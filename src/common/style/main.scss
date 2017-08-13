@@ -1,0 +1,75 @@
+
+
+.head-warp{
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: rgba(255,255,255,0.75);
+    background-color: #24292e;
+    margin-bottom: 6px;
+}
+.head{
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    margin-right: auto;
+    margin-left: auto;
+    .timeWidget{
+        float: left;
+        width:300px;
+        line-height: 42px;
+        margin-left: 30px;
+
+    }
+    h1{
+        float: left;
+        line-height: 42px;
+        margin-left: 30px;
+    }
+}
+
+// 给一个react-grid-layout 的 block
+.gridBlock{
+	background: #fff; border: 1px solid #ddd;
+}
+
+// 密度的头部
+.cont-head{
+    width: 100%;
+    height: 42px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+	// margin-bottom: 20px;
+    span{
+        width: 6px;
+        height: 22px;
+        background-color: #333;
+        position: absolute;
+        left: 20px;
+        top: 10px;
+
+    }
+    h2{
+        float: left;
+        font:bold 22px/42px "微软雅黑";
+        text-indent: 32px;
+    }
+}
+.cont-head-nav{
+    float: left;
+    padding-top: 12px;
+    margin-left: 30px;
+    li{
+        float: left;
+        height: 30px;
+        padding: 0 14px;
+        font:bold 16px/30px "微软雅黑";
+        color: #3a3536;
+    }
+}
+
+//点击高亮
+.cont-head-nav .active{
+    border-bottom: 2px solid #e15671;
+    color: #e15671;
+}
+// end 密度的头部

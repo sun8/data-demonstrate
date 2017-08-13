@@ -1,0 +1,56 @@
+{
+		"name": "data-demonstrate",
+		"version": "1.0.0",
+		"description": "mei's project",
+		"main": "server.js",
+		"scripts": {
+				"test": "echo \"Error: no test specified\" && exit 1",
+				"start": "node server.js open"
+		},
+		"repository": {
+				"type": "git"
+		},
+		"author": "",
+		"license": "ISC",
+		"bugs": {},
+		"devDependencies": {
+				"babel-core": "^6.24.1",
+				"babel-loader": "^7.0.0",
+				"babel-plugin-transform-object-rest-spread": "^6.23.0",
+				"babel-preset-env": "^1.5.2",
+				"babel-preset-react": "^6.24.1",
+				"babel-preset-react-optimize": "^1.0.1",
+				"babili-webpack-plugin": "^0.1.1",
+				"chunk-manifest-webpack-plugin": "^1.1.0",
+				"css-loader": "^0.28.4",
+				"extract-text-webpack-plugin": "^2.1.2",
+				"file-loader": "^0.11.1",
+				"has-flag": "^2.0.0",
+				"html-webpack-plugin": "^2.28.0",
+				"node-sass": "^4.5.3",
+				"open-browser-webpack-plugin": "0.0.5",
+				"prop-types": "^15.5.10",
+				"raw-loader": "^0.5.1",
+				"rimraf": "^2.6.1",
+				"sass-loader": "^6.0.5",
+				"style-loader": "^0.18.1",
+				"url-loader": "^0.5.8",
+				"webpack": "^2.6.1",
+				"webpack-dev-middleware": "^1.10.2",
+				"webpack-dev-server": "^2.4.5",
+				"webpack-hot-middleware": "^2.18.0"
+		},
+		"dependencies": {
+				"axios": "^0.16.2",
+				"bootstrap": "^3.3.7",
+				"echarts-for-react": "^1.4.4",
+				"moment": "^2.18.1",
+				"react": "^15.6.1",
+				"react-bootstrap": "^0.31.2",
+				"react-bootstrap-daterangepicker": "^3.4.0",
+				"react-dom": "^15.6.1",
+				"react-echarts": "^0.1.1",
+				"react-grid-layout": "^0.14.7",
+				"react-highcharts": "^12.0.0"
+		}
+}
