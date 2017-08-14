@@ -20,29 +20,47 @@ export default class ReactGridLayout extends Component{
 	constructor(props){
         super(props);
 		//数据初始化参数
+		// 企业注册资本  enterpriseCapitalRegistration
+		// 在营企业or个体总数  totalInBattalion
+		// 整体概览 latestChangeStat
+		// 企业注册时间查询总量 enterpriseRegistrationTime
+		// 指标概要, 雷达图 radarMap
+		// 密度地图density
+		// 行业统计总览 industry
+		// 变更趋势 折线图 changeTrend
+		// 按行业分类企业数量 enterpriseQquantity
 		let layout = [
-
-			// {i: 'changeTrend', x: 0, y: 1, w: 12, h: 1.5, static: true},
-			// {i: 'radarMap', x: 6, y: 0, w: 5, h: 1.2,static: true},
-			// {i: 'density', x: 0, y: 0, w: 5, h: 2,static: true},
-			// {i: 'industry', x: 0, y: 0, w: 12, h: 1.2,static: true},
-			//
 
 
 			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: true},
 			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: true},
 
-			{i: 'enterpriseCapitalRegistration', x: 0, y: 0, w: 6, h: 2,static: true},
-			{i: 'enterpriseRegistrationTime', x: 6, y: 0, w: 6, h: 2,static: true},
+			{i: 'enterpriseCapitalRegistration', x: 0, y: 1.5, w: 6, h: 2,static: true},
+			{i: 'enterpriseRegistrationTime', x: 6, y: 1.5, w: 6, h: 2,static: true},
 
 
-			{i: 'radarMap', x: 0, y: 0, w: 6, h: 2,static: true},
-			{i: 'density', x: 6, y: 0, w: 6, h: 2,static: true},
+			{i: 'radarMap', x: 0, y: 3.5, w: 6, h: 2,static: true},
+			{i: 'density', x: 6, y: 3.5, w: 6, h: 2,static: true},
 
 
-			{i: 'industry', x: 0, y: 0, w: 12, h: 1,static: true},
-			{i: 'changeTrend', x: 0, y: 0, w: 12, h: 1.5, static: true},
-			{i: 'enterpriseQquantity', x: 0, y: 0, w: 12, h: 1.2, static: true}
+			{i: 'industry', x: 0, y: 5.5, w: 12, h: 1,static: true},
+			{i: 'changeTrend', x: 0, y: 6.5, w: 12, h: 1.5, static: true},
+			{i: 'enterpriseQquantity', x: 0, y: 8, w: 12, h: 1.2, static: true}
+
+			// {i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: true},
+			// {i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: true},
+			//
+			// {i: 'enterpriseCapitalRegistration', x: 0, y: 0, w: 6, h: 2,static: true},
+			// {i: 'enterpriseRegistrationTime', x: 6, y: 0, w: 6, h: 2,static: true},
+			//
+			//
+			// {i: 'radarMap', x: 0, y: 0, w: 6, h: 2,static: true},
+			// {i: 'density', x: 6, y: 0, w: 6, h: 2,static: true},
+			//
+			//
+			// {i: 'industry', x: 0, y: 0, w: 12, h: 1.2,static: true},
+			// {i: 'changeTrend', x: 0, y: 0, w: 12, h: 1.5, static: true},
+			// {i: 'enterpriseQquantity', x: 0, y: 0, w: 12, h: 1.5, static: true}
 
 
 
@@ -172,24 +190,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 					key={'totalInBattalion'}
 					className="gridBlock"
 				>
-					{/* <div className="cont-head clearfix">
-						<span></span>
-						<h2>按企业注册时间查询总量</h2>
 
-						</div>
-
-						{
-						enterpriseRegistrationTimeOption ? (
-							<ReactEcharts
-						option={enterpriseRegistrationTimeOption}
-						onChartReady = {IntervalTime}
-
-						{...{
-
-						}}
-							/>
-						) : null
-					} */}
 					<div className="totaInUKEnterprises">
 						<p className="num">{totaInUKEnterprises}</p>
 						<p className="inc">在营企业总数</p>
@@ -366,7 +367,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 				>
 					<div className="cont-head clearfix">
 						<span></span>
-						<h2>变更趋势</h2>
+						<h2>地区统计</h2>
 						<ul className="cont-head-nav clearfix">
 							<li
 								className={` ${onOffMonitorDensity ? 'active' : ' '} `}
@@ -434,7 +435,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 				>
 					<div className="cont-head clearfix">
 						<span></span>
-						<h2>企业数量</h2>
+						<h2>按行业分类企业数量TOP10</h2>
 
 					</div>
 

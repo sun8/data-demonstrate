@@ -31,14 +31,6 @@ let config = Object.assign({}, dfConfig, {
 
 
 config.module.rules.push(
-    // {
-    //     test: /\.js$/,
-    //     use: ['eslint-loader'],
-    //     enforce: 'pre',
-    //     include:[
-    //         dfPath.src
-    //     ]
-    // },
     {
         test: /\.js$/,
         use: ['babel-loader'],

@@ -24,7 +24,7 @@ let config = Object.assign({}, dfConfig, {
 
     entry: {
         app: './src/app.js',
-        common: ['react', 'react-dom', 'react-konva', 'redux', 'redux-thunk', 'react-redux', 'react-router-redux', 'react-router']
+        common: ['react']
     },
 
     plugins: [ ...dfConfig.plugins,
