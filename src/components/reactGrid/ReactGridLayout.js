@@ -21,11 +21,31 @@ export default class ReactGridLayout extends Component{
         super(props);
 		//数据初始化参数
 		let layout = [
-			{i: 'latestChangeStat', x: 0, y: 0, w: 6, h: 1, static: false},
-			{i: 'changeTrend', x: 0, y: 1, w: 12, h: 1, static: true},
-			{i: 'radarMap', x: 6, y: 0, w: 6, h: 1},
-			{i: 'density', x: 0, y: 0, w: 12, h: 2},
-			{i: 'industry', x: 0, y: 0, w: 12, h: 2}
+
+			// {i: 'changeTrend', x: 0, y: 1, w: 12, h: 1.5, static: true},
+			// {i: 'radarMap', x: 6, y: 0, w: 5, h: 1.2,static: true},
+			// {i: 'density', x: 0, y: 0, w: 5, h: 2,static: true},
+			// {i: 'industry', x: 0, y: 0, w: 12, h: 1.2,static: true},
+			//
+
+
+			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: true},
+			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: true},
+
+			{i: 'enterpriseCapitalRegistration', x: 0, y: 0, w: 6, h: 2,static: true},
+			{i: 'enterpriseRegistrationTime', x: 6, y: 0, w: 6, h: 2,static: true},
+
+
+			{i: 'radarMap', x: 0, y: 0, w: 6, h: 2,static: true},
+			{i: 'density', x: 6, y: 0, w: 6, h: 2,static: true},
+
+
+			{i: 'industry', x: 0, y: 0, w: 12, h: 1,static: true},
+			{i: 'changeTrend', x: 0, y: 0, w: 12, h: 1.5, static: true},
+			{i: 'enterpriseQquantity', x: 0, y: 0, w: 12, h: 1.2, static: true}
+
+
+
 		];
 
 		this.state = {
@@ -34,6 +54,8 @@ export default class ReactGridLayout extends Component{
 		};
 
 		this.onLayoutChange = this.onLayoutChange.bind(this);
+		this.IntervalTime = this.IntervalTime.bind(this);
+
     }
 
 
@@ -42,11 +64,33 @@ export default class ReactGridLayout extends Component{
 		this.setState({ layout, layouts });
 	}
 
+	IntervalTime(){
+		console.log(this.echarts_react,123);
+		// let echarts_instance = this.echarts_react.getEchartsInstance();
+		// var count = 0;
+        //     var app = {};
+        //     app.timeTicket = setInterval(function () {
+        //       echarts_instance.dispatchAction({
+        //         type: 'downplay',
+        //         seriesIndex: 0
+        //       });
+        //       echarts_instance.dispatchAction({
+        //         type: 'highlight',
+        //         seriesIndex: 0,
+        //         dataIndex: (count++) % 10
+        //       });
+        //     }, 1000);
+
+	}
+
+	componentDidMount(){
+
+	}
 
     render(){
 
 
-		let {onLayoutChange} = this;
+		let {onLayoutChange,IntervalTime} = this;
 
 		let {
 			layout,
@@ -61,6 +105,13 @@ export default class ReactGridLayout extends Component{
 			densityOption,
 			industryOption,
 
+			enterpriseCapitalRegistrationOption,
+			enterpriseQquantityOption,
+			enterpriseRegistrationTimeOption,
+
+			totaInUKEnterprises,
+			totalIndividualsInBattalion
+
 
 		} = this.props.chartOptions;
 
@@ -71,6 +122,13 @@ export default class ReactGridLayout extends Component{
 			getRiskDensity
 		} = this.props.callback;
 
+		let {
+			onOffMonitorDensity,
+			onOffChangeDensity,
+			onOffRiskDensity
+		} = this.props.onOff;
+
+console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 
         return (
 			<ResponsiveReactGridLayout
@@ -86,17 +144,17 @@ export default class ReactGridLayout extends Component{
 				// onBreakpointChange={layout=>console.log(layout)}
 				onLayoutChange={onLayoutChange}
 			>
-				{/* 指标概要 */}
 
+				{/* 整体概览 */}
 				<div
 					key={'latestChangeStat'}
 					className="gridBlock"
 				>
 					<div className="cont-head clearfix">
-                        <span></span>
-                        <h2>指标概要</h2>
+						<span></span>
+						<h2>整体概览</h2>
 
-                    </div>
+					</div>
 					{
 						latestChangeOption ? (
 							<ReactEcharts
@@ -109,16 +167,103 @@ export default class ReactGridLayout extends Component{
 					}
 				</div>
 
+				{/* 在营企业or个体总数 */}
+				<div
+					key={'totalInBattalion'}
+					className="gridBlock"
+				>
+					{/* <div className="cont-head clearfix">
+						<span></span>
+						<h2>按企业注册时间查询总量</h2>
+
+						</div>
+
+						{
+						enterpriseRegistrationTimeOption ? (
+							<ReactEcharts
+						option={enterpriseRegistrationTimeOption}
+						onChartReady = {IntervalTime}
+
+						{...{
+
+						}}
+							/>
+						) : null
+					} */}
+					<div className="totaInUKEnterprises">
+						<p className="num">{totaInUKEnterprises}</p>
+						<p className="inc">在营企业总数</p>
+
+					</div>
+					<div className="totaInUKEnterprises clo">
+						<p className="num">{totalIndividualsInBattalion}</p>
+						<p className="inc">在营个体总数</p>
+
+					</div>
+
+				</div>
+
+
+				{/* 企业注册资本 */}
+				<div
+					key={'enterpriseCapitalRegistration'}
+					className="gridBlock"
+				>
+					<div className="cont-head clearfix">
+						<span></span>
+						<h2>企业注册资本</h2>
+
+					</div>
+					{
+						enterpriseCapitalRegistrationOption ? (
+							<ReactEcharts
+								option={enterpriseCapitalRegistrationOption}
+								{...{
+
+								}}
+							/>
+						) : null
+					}
+
+				</div>
+
+				{/* 企业注册时间查询总量 */}
+				<div
+					key={'enterpriseRegistrationTime'}
+					className="gridBlock"
+					ref={(e) => { this.echarts_react = e }}
+				>
+					<div className="cont-head clearfix">
+						<span></span>
+						<h2>按企业注册时间查询总量</h2>
+
+					</div>
+
+					{
+						enterpriseRegistrationTimeOption ? (
+							<ReactEcharts
+								option={enterpriseRegistrationTimeOption}
+								onChartReady = {IntervalTime}
+
+								{...{
+
+								}}
+							/>
+						) : null
+					}
+
+				</div>
+
 				{/* 变更趋势 折线图 */}
 				<div
 					key={'changeTrend'}
 					className="gridBlock"
 				>
-					{/* <div className="cont-head clearfix">
+					<div className="cont-head clearfix">
 						<span></span>
 						<h2>变更趋势</h2>
 
-					</div> */}
+					</div>
 
 					{
 						changeLineOption ? (
@@ -220,22 +365,24 @@ export default class ReactGridLayout extends Component{
 					style={{paddingBottom: 50}}
 				>
 					<div className="cont-head clearfix">
-                        <span></span>
-                        <h2>变更趋势</h2>
-                        <ul className="cont-head-nav clearfix">
-                            <li
-								className="active"
+						<span></span>
+						<h2>变更趋势</h2>
+						<ul className="cont-head-nav clearfix">
+							<li
+								className={` ${onOffMonitorDensity ? 'active' : ' '} `}
 								onClick={getMonitorDensity}
 							>监控密度</li>
-                            <li
+							<li
+								className={` ${onOffChangeDensity ? 'active' : ' '} `}
 								onClick = {getChangeDensity}
 							>变更密度</li>
-                            <li
+							<li
+								className={` ${onOffRiskDensity ? 'active' : ' '} `}
 								onClick={getRiskDensity}
 							>风险密度</li>
-                        </ul>
+						</ul>
 
-                    </div>
+					</div>
 
 
 					{
@@ -253,7 +400,7 @@ export default class ReactGridLayout extends Component{
 
 				</div>
 
-				{/* 行业统计 */}
+				{/* 行业统计总览 */}
 				<div
 					key={'industry'}
 					className="gridBlock"
@@ -275,6 +422,40 @@ export default class ReactGridLayout extends Component{
 
 
 				</div>
+
+
+
+
+
+				{/* 按行业分类企业数量 */}
+				<div
+					key={'enterpriseQquantity'}
+					className="gridBlock"
+				>
+					<div className="cont-head clearfix">
+						<span></span>
+						<h2>企业数量</h2>
+
+					</div>
+
+					{
+						enterpriseQquantityOption ? (
+							<ReactEcharts
+								option={enterpriseQquantityOption}
+								{...{
+
+								}}
+							/>
+						) : null
+					}
+
+				</div>
+
+
+
+
+
+
 
 
 			</ResponsiveReactGridLayout>

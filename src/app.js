@@ -21,7 +21,15 @@ import {
 	getMonitorDensity,
 	getChangeDensity,
 	getRiskDensity,
-	getIndustryData
+	getIndustryData,
+
+	getEnterprise,
+	getEnterpriseCapitalRegistration,
+	getEnterpriseQquantity,
+	getEnterpriseRegistrationTime,
+
+	getTotaInUKEnterprises,
+	getTotalIndividualsInBattalion
 } from 'common/util/dataRequest';
 //end 引入请求函数
 
@@ -34,11 +42,17 @@ import {
 	buildMonitorDensityOption,
 	buildChangeDensityOption,
 	buildRiskDensityOption,
-	buildIndustryOption
+	buildIndustryOption,
+
+	buildEnterpriseOption,
+	buildEnterpriseCapitalRegistrationOption,
+	buildEnterpriseQquantityOption,
+	buildEnterpriseRegistrationTimeOption,
+
+	buildTotaInUKEnterprisesOption,
+	buildTotalIndividualsInBattalionOption
 } from 'common/util/buildChartOption';
 // end 引入构建option的函数
-
-
 
 
 export default class App extends Component{
@@ -52,12 +66,25 @@ export default class App extends Component{
 				radarMapOption: null,
 
 				densityOption: null,
-				industryOption: null
+				industryOption: null,
+
+				enterpriseCapitalRegistrationOption: null,
+				enterpriseQquantityOption: null,
+				enterpriseRegistrationTimeOption:null,
+
+				totaInUKEnterprises: null,
+				totalIndividualsInBattalion: null
+
+			},
+			onOff:{
+				onOffMonitorDensity: false,
+				onOffChangeDensity: false,
+				onOffRiskDensity: false
 			}
 		}
 		this.getLatestChangeStat = this.getLatestChangeStat.bind(this);
 		this.getHistoryChangeStat = this.getHistoryChangeStat.bind(this);
-		
+
 		this.getRadarMap = this.getRadarMap.bind(this);
 
 		this.getMonitorDensity = this.getMonitorDensity.bind(this);
@@ -66,7 +93,11 @@ export default class App extends Component{
 
 		this.getIndustryData = this.getIndustryData.bind(this);
 
+		this.getEnterpriseCapitalRegistration = this.getEnterpriseCapitalRegistration.bind(this);
+		this.getEnterpriseQquantity = this.getEnterpriseQquantity.bind(this);
+		this.getEnterpriseRegistrationTime = this.getEnterpriseRegistrationTime.bind(this);
 
+		this.getTotaInUKEnterprises = this.getTotaInUKEnterprises.bind(this);
     }
 
 
@@ -84,6 +115,7 @@ export default class App extends Component{
 					...chartOptions,
 					latestChangeOption
 				}
+
 			});
 
 
@@ -147,6 +179,9 @@ export default class App extends Component{
 					chartOptions: {
 						...chartOptions,
 						densityOption
+					},
+					onOff:{
+						onOffMonitorDensity : true
 					}
 				});
 
@@ -164,6 +199,9 @@ export default class App extends Component{
 					chartOptions: {
 						...chartOptions,
 						densityOption
+					},
+					onOff:{
+						onOffChangeDensity : true
 					}
 				});
 
@@ -181,6 +219,9 @@ export default class App extends Component{
 					chartOptions: {
 						...chartOptions,
 						densityOption
+					},
+					onOff:{
+						onOffRiskDensity : true
 					}
 				});
 
@@ -204,9 +245,83 @@ export default class App extends Component{
 		} );
 	}
 
+	getEnterpriseCapitalRegistration(){
+		//企业注册资本
+		getEnterpriseCapitalRegistration((data)=>{
+			let enterpriseCapitalRegistrationOption = buildEnterpriseCapitalRegistrationOption(data);
+			let {chartOptions} = this.state;
 
+			this.setState({
+				chartOptions: {
+					...chartOptions,
+					enterpriseCapitalRegistrationOption
+				}
+			});
+		})
+	}
+
+	getEnterpriseQquantity(){
+		//企业数量
+		getEnterpriseQquantity((data)=>{
+			let enterpriseQquantityOption = buildEnterpriseQquantityOption(data);
+			let {chartOptions} = this.state;
+
+			this.setState({
+				chartOptions: {
+					...chartOptions,
+					enterpriseQquantityOption
+				}
+			});
+		})
+	}
+
+	getEnterpriseRegistrationTime(){
+		//企业注册时间查询总量
+		getEnterpriseRegistrationTime((data)=>{
+			let enterpriseRegistrationTimeOption = buildEnterpriseRegistrationTimeOption(data);
+			let {chartOptions} = this.state;
+
+			this.setState({
+				chartOptions: {
+					...chartOptions,
+					enterpriseRegistrationTimeOption
+				}
+			});
+		})
+	}
+
+	getTotaInUKEnterprises(){
+		//在营企业总数
+		getTotaInUKEnterprises((data)=>{
+			let totaInUKEnterprises = buildTotaInUKEnterprisesOption(data);
+			let {chartOptions} = this.state;
+
+			this.setState({
+				chartOptions: {
+					...chartOptions,
+					totaInUKEnterprises
+				}
+			});
+		})
+	}
+
+	getTotalIndividualsInBattalion(){
+		//在营个体总数
+		getTotalIndividualsInBattalion((data)=>{
+			let totalIndividualsInBattalion = buildTotalIndividualsInBattalionOption(data);
+			let {chartOptions} = this.state;
+
+			this.setState({
+				chartOptions: {
+					...chartOptions,
+					totalIndividualsInBattalion
+				}
+			});
+		})
+	}
 
 	componentDidMount(){
+
 		this.getLatestChangeStat();
 		this.getHistoryChangeStat();
 		this.getRadarMap();
@@ -214,6 +329,14 @@ export default class App extends Component{
 		this.getMonitorDensity();
 
 		this.getIndustryData();
+
+		this.getEnterpriseCapitalRegistration();
+		this.getEnterpriseQquantity();
+		this.getEnterpriseRegistrationTime();
+
+		this.getTotaInUKEnterprises();
+		this.getTotalIndividualsInBattalion();
+
 	}
 
 
@@ -221,9 +344,8 @@ export default class App extends Component{
 
     render(){
 
-	let {chartOptions} = this.state ;
+	let { chartOptions , onOff } = this.state ;
 	let {getMonitorDensity,getChangeDensity,getRiskDensity} = this;
-
     	return (
 			<div>
                 <header className="head-warp">
@@ -248,7 +370,9 @@ export default class App extends Component{
 								getRiskDensity
 							}
 						}
-
+						onOff = {
+							{...onOff}
+						}
 
 					/>
                 </section>
@@ -257,6 +381,7 @@ export default class App extends Component{
 
     }
 }
+
 
 ReactDOM.render(
 	<App/>,

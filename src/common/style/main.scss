@@ -29,7 +29,9 @@
 
 // 给一个react-grid-layout 的 block
 .gridBlock{
-	background: #fff; border: 1px solid #ddd;
+	background: #fff;
+    border: 1px solid #ddd;
+    // margin-bottom: 40px;
 }
 
 // 密度的头部
@@ -73,3 +75,29 @@
     color: #e15671;
 }
 // end 密度的头部
+
+
+//企业
+.totaInUKEnterprises{
+    width: 80%;
+    height: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6%;
+    border-radius: 10px;
+    background-color: #3598dc;
+    p{
+        font:700 24px "微软雅黑";
+        line-height: 50px;
+        text-align: right;
+        margin-right: 8%;
+        margin-top: 8%;
+        color: #fff;
+    }
+    .num{
+        padding-top: 6%;
+    }
+}
+.clo{
+    background-color: #32c5d2;
+}

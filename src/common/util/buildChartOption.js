@@ -788,3 +788,243 @@ const renderIndustryChart = (divId, yAxisData,warningData,changeData) => {
     }
 
 }
+
+//企业和高管参数
+export const buildEnterpriseOption = (month,enterprise,seniorExecutive) =>{
+
+	let option ={
+			title : {
+			    text: '查询企业和高管总量',
+			    subtext: '查询量'
+			},
+			tooltip : {
+			    trigger: 'axis'
+			},
+			legend: {
+			    data:['企业','高管']
+			},
+			toolbox: {
+			    show : true,
+			    feature : {
+			        dataView : {show: true, readOnly: false},
+			        magicType : {show: true, type: ['line', 'bar']},
+			        restore : {show: true},
+			        saveAsImage : {show: true}
+			    }
+			},
+			calculable : true,
+			xAxis : [
+			    {
+			        type : 'category',
+			        data : month
+			    }
+			],
+			yAxis : [
+			    {
+			        type : 'value'
+			    }
+			],
+			series : [
+			    {
+			        name:'企业',
+			        type:'bar',
+			        data:enterprise,
+			        markPoint : {
+			            data : [
+			                {type : 'max', name: '最大值'},
+			                {type : 'min', name: '最小值'}
+			            ]
+			        },
+			        markLine : {
+			            data : [
+			                {type : 'average', name: '平均值'}
+			            ]
+			        }
+			    },
+			    {
+			        name:'高管',
+			        type:'bar',
+			        data:seniorExecutive,
+			        markPoint : {
+			            data : [
+			              {type : 'max', name: '最大值'},
+			              {type : 'min', name: '最小值'}
+			            ]
+			        },
+			        markLine : {
+			            data : [
+			                {type : 'average', name : '平均值'}
+			            ]
+			        }
+			    }
+			]
+		}
+		return option
+}
+
+//企业资本统计
+export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
+
+
+	let option ={
+	    title: {
+	        text: "",
+	        x: "center"
+	    },
+	    tooltip: {
+	        trigger: "item",
+	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	    },
+	    legend: {
+	        x: "left",
+	        data: []
+	    },
+	    label: {
+	        normal: {
+	            formatter: "{b} ({d}%)",
+	            position: "insideTopRight"
+	        }
+	    },
+	    labelLine: {
+	        normal: {
+	            smooth: .6
+	        }
+	    },
+	    toolbox: {
+	        show: !0,
+	        feature: {
+	            mark: {
+	                show: !0
+	            },
+	            dataView: {
+	                show: !0,
+	                readOnly: !1
+	            },
+	            magicType: {
+	                show: !0,
+	                type: ["pie", "funnel"]
+	            },
+	            restore: {
+	                show: !0
+	            },
+	            saveAsImage: {
+	                show: !0
+	            }
+	        }
+	    },
+	    calculable: !0,
+	    series: [{
+	        name: "企业数量",
+	        type: "pie",
+	        roseType: "area",
+	        label: {
+	            normal: {
+	                show: !0
+	            },
+	            emphasis: {
+	                show: !0
+	            }
+	        },
+	        lableLine: {
+	            normal: {
+	                show: !0
+	            },
+	            emphasis: {
+	                show: !0
+	            }
+	        },
+	        data:  [...data]
+	    }]
+	}
+
+	return option
+}
+
+
+//企业数量
+export const buildEnterpriseQquantityOption = (data) =>{
+	let { xData , yData } = data ;
+	let option = {
+		    title: {
+		        text: '',
+		        subtext: ''
+		    },
+		    tooltip: {
+		        trigger: 'axis',
+		        axisPointer: {
+		            type: 'shadow'
+		        }
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        containLabel: true
+		    },
+		    xAxis: {
+		        type: 'value'
+		    },
+		    yAxis: {
+		        type: 'category',
+		        data: [...yData]
+		    },
+		    series: [{
+		        name: '企业数量',
+		        type: 'bar',
+		        data: [...xData]
+		    }]
+		}
+
+		return option
+}
+
+
+//企业注册时间查询总量
+export const buildEnterpriseRegistrationTimeOption = (data) =>{
+
+	let option = {
+		title : {
+	        text: '',
+	        x:'center'
+	    },
+	    tooltip : {
+	        trigger: 'item',
+	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	    },
+	    series : [
+	        {
+	            name:'查询总量',
+	            type:'pie',
+	            selectedMode: 'single',
+	            radius : '55%',
+	            center: ['50%', '60%'],
+	            data:[...data],
+	            itemStyle: {
+	                normal: {
+	                    color: '#61a0a8',
+	                    borderWidth: 0.5,
+	                    borderColor: '#ffffff'
+	                },
+	                emphasis: {
+	                    color: '#c23531',
+	                    shadowBlur: 10,
+	                    shadowOffsetX: 0,
+	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                }
+	            }
+	        }
+	    ]
+	}
+	return option
+}
+
+
+//在营企业总数
+export const buildTotaInUKEnterprisesOption = (data) =>{
+	return data
+}
+
+//在营个体总数
+export const buildTotalIndividualsInBattalionOption = (data) =>{
+	return data
+}
