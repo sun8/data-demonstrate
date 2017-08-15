@@ -69,7 +69,7 @@ export default class ReactGridLayout extends Component{
 	}
 
 	componentWillReceiveProps(){
-		
+
 	}
 	//饼图定时器
 	intervalTime(echarts_instance){
@@ -97,7 +97,7 @@ export default class ReactGridLayout extends Component{
     render(){
 
 
-		let {onLayoutChange,} = this;
+		let {onLayoutChange,intervalTime} = this;
 
 		let {
 			layout,

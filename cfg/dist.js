@@ -23,8 +23,7 @@ const extractLocSCSS = new ExtractTextPlugin({
 let config = Object.assign({}, dfConfig, {
 
     entry: {
-        app: './src/app.js',
-        common: ['react']
+        app: './src/app.js'
     },
 
     plugins: [ ...dfConfig.plugins,
@@ -32,15 +31,15 @@ let config = Object.assign({}, dfConfig, {
             filename: '../index.html',
             template: './src/index.html'
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
-            minChunks: Infinity
-        }),
-        new ChunkManifestPlugin({
-            filename: 'manifest.json',
-            manifestVariable: 'webpackManifest',
-            inlineManifest: false
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'common',
+        //     minChunks: Infinity
+        // }),
+        // new ChunkManifestPlugin({
+        //     filename: 'manifest.json',
+        //     manifestVariable: 'webpackManifest',
+        //     inlineManifest: false
+        // }),
         extractCSS,
         extractGloSCSS,
         extractLocSCSS

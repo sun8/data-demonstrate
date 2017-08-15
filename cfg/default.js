@@ -26,7 +26,7 @@ let dfConfig = {
     output: {
         path: path.resolve(__dirname, '../dist/assets'),
         filename: env === 'production' ? '[name]_[hash:8].js' : 'main.js',
-        publicPath: '/assets/'
+        publicPath: './assets/'
     },
 
     module: {
