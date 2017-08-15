@@ -69,25 +69,9 @@ export default class ReactGridLayout extends Component{
 	}
 
 	componentWillReceiveProps(){
-		if(this.echarts_react){
-			// console.log(this.echarts_react);
-			// let echarts_instance = this.echarts_react.getEchartsInstance();
-			// var count = 0;
-	        //     var app = {};
-	        //     app.timeTicket = setInterval(function () {
-	        //       echarts_instance.dispatchAction({
-	        //         type: 'downplay',
-	        //         seriesIndex: 0
-	        //       });
-	        //       echarts_instance.dispatchAction({
-	        //         type: 'highlight',
-	        //         seriesIndex: 0,
-	        //         dataIndex: (count++) % 10
-	        //       });
-	        //     }, 1000);
-		}
+		
 	}
-
+	//饼图定时器
 	intervalTime(echarts_instance){
 		// let echarts_instance = this.echarts_react.getEchartsInstance();
 
@@ -113,7 +97,7 @@ export default class ReactGridLayout extends Component{
     render(){
 
 
-		let {onLayoutChange,intervalTime} = this;
+		let {onLayoutChange,} = this;
 
 		let {
 			layout,
