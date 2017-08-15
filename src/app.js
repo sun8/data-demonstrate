@@ -348,16 +348,16 @@ export default class App extends Component{
 	let {getMonitorDensity,getChangeDensity,getRiskDensity} = this;
     	return (
 			<div>
-                <header className="head-warp">
+                {/* <header className="head-warp">
                     <div className="head clearfix">
                         <div className="timeWidget">
-                            {/* 时间控件 */}
-                            <DateWidget />
-                        </div>
+					时间控件
+					<DateWidget />
+						</div>
                         <h1>中数智汇</h1>
                     </div>
 
-                </header>
+                </header> */}
 
                 <section>
                     {/* 图表布局 */}

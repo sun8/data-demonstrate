@@ -11,7 +11,12 @@ import ReactEcharts from 'eCharts/Echarts';
 
 // 引入测试数据
 
-// import {changeTrendData} from 'common/util/staticData';
+// import entAndManagerOption from 'common/data/entAndManagerOption';
+// import esdateOption from 'common/data/esdateOption';
+// import industryphyOption from 'common/data/industryphyOption';
+// import regcapOption from 'common/data/regcapOption';
+
+
 
 // end 引入测试数据
 
@@ -31,7 +36,6 @@ export default class ReactGridLayout extends Component{
 		// 按行业分类企业数量 enterpriseQquantity
 		let layout = [
 
-
 			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: true},
 			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: true},
 
@@ -42,27 +46,9 @@ export default class ReactGridLayout extends Component{
 			{i: 'radarMap', x: 0, y: 3.5, w: 6, h: 2,static: true},
 			{i: 'density', x: 6, y: 3.5, w: 6, h: 2,static: true},
 
-
 			{i: 'industry', x: 0, y: 5.5, w: 12, h: 1,static: true},
 			{i: 'changeTrend', x: 0, y: 6.5, w: 12, h: 1.5, static: true},
 			{i: 'enterpriseQquantity', x: 0, y: 8, w: 12, h: 1.2, static: true}
-
-			// {i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: true},
-			// {i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: true},
-			//
-			// {i: 'enterpriseCapitalRegistration', x: 0, y: 0, w: 6, h: 2,static: true},
-			// {i: 'enterpriseRegistrationTime', x: 6, y: 0, w: 6, h: 2,static: true},
-			//
-			//
-			// {i: 'radarMap', x: 0, y: 0, w: 6, h: 2,static: true},
-			// {i: 'density', x: 6, y: 0, w: 6, h: 2,static: true},
-			//
-			//
-			// {i: 'industry', x: 0, y: 0, w: 12, h: 1.2,static: true},
-			// {i: 'changeTrend', x: 0, y: 0, w: 12, h: 1.5, static: true},
-			// {i: 'enterpriseQquantity', x: 0, y: 0, w: 12, h: 1.5, static: true}
-
-
 
 		];
 
@@ -72,7 +58,7 @@ export default class ReactGridLayout extends Component{
 		};
 
 		this.onLayoutChange = this.onLayoutChange.bind(this);
-		this.IntervalTime = this.IntervalTime.bind(this);
+		this.intervalTime = this.intervalTime.bind(this);
 
     }
 
@@ -82,23 +68,42 @@ export default class ReactGridLayout extends Component{
 		this.setState({ layout, layouts });
 	}
 
-	IntervalTime(){
-		console.log(this.echarts_react,123);
-		// let echarts_instance = this.echarts_react.getEchartsInstance();
-		// var count = 0;
-        //     var app = {};
-        //     app.timeTicket = setInterval(function () {
-        //       echarts_instance.dispatchAction({
-        //         type: 'downplay',
-        //         seriesIndex: 0
-        //       });
-        //       echarts_instance.dispatchAction({
-        //         type: 'highlight',
-        //         seriesIndex: 0,
-        //         dataIndex: (count++) % 10
-        //       });
-        //     }, 1000);
+	componentWillReceiveProps(){
+		if(this.echarts_react){
+			// console.log(this.echarts_react);
+			// let echarts_instance = this.echarts_react.getEchartsInstance();
+			// var count = 0;
+	        //     var app = {};
+	        //     app.timeTicket = setInterval(function () {
+	        //       echarts_instance.dispatchAction({
+	        //         type: 'downplay',
+	        //         seriesIndex: 0
+	        //       });
+	        //       echarts_instance.dispatchAction({
+	        //         type: 'highlight',
+	        //         seriesIndex: 0,
+	        //         dataIndex: (count++) % 10
+	        //       });
+	        //     }, 1000);
+		}
+	}
 
+	intervalTime(echarts_instance){
+		// let echarts_instance = this.echarts_react.getEchartsInstance();
+
+		var count = 0;
+	    var app = {};
+	    app.timeTicket = setInterval(function () {
+	      echarts_instance.dispatchAction({
+	        type: 'downplay',
+	        seriesIndex: 0
+	      });
+	      echarts_instance.dispatchAction({
+	        type: 'highlight',
+	        seriesIndex: 0,
+	        dataIndex: (count++) % 10
+	      });
+	    }, 1000);
 	}
 
 	componentDidMount(){
@@ -108,7 +113,7 @@ export default class ReactGridLayout extends Component{
     render(){
 
 
-		let {onLayoutChange,IntervalTime} = this;
+		let {onLayoutChange,intervalTime} = this;
 
 		let {
 			layout,
@@ -146,7 +151,7 @@ export default class ReactGridLayout extends Component{
 			onOffRiskDensity
 		} = this.props.onOff;
 
-console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
+
 
         return (
 			<ResponsiveReactGridLayout
@@ -155,8 +160,8 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 				layouts={layouts}
 				breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
 				cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
-
-				rowHeight={400}
+				// autoSize={true}
+				rowHeight={500}
 				width={1200}
 
 				// onBreakpointChange={layout=>console.log(layout)}
@@ -178,7 +183,13 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 							<ReactEcharts
 								option={latestChangeOption}
 								{...{
-
+									style: {
+										position: 'absolute',
+										top: 52,
+										left: 0,
+										right: 0,
+										bottom: -30
+									},
 								}}
 							/>
 						) : null
@@ -216,14 +227,17 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 
 					</div>
 					{
-						enterpriseCapitalRegistrationOption ? (
-							<ReactEcharts
-								option={enterpriseCapitalRegistrationOption}
-								{...{
+						enterpriseCapitalRegistrationOption
+						// regcapOption
+							? (
+								<ReactEcharts
+									option={enterpriseCapitalRegistrationOption}
+									// option={regcapOption}
+									{...{
 
-								}}
-							/>
-						) : null
+									}}
+								/>
+							) : null
 					}
 
 				</div>
@@ -232,7 +246,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 				<div
 					key={'enterpriseRegistrationTime'}
 					className="gridBlock"
-					ref={(e) => { this.echarts_react = e }}
+
 				>
 					<div className="cont-head clearfix">
 						<span></span>
@@ -241,16 +255,22 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 					</div>
 
 					{
-						enterpriseRegistrationTimeOption ? (
-							<ReactEcharts
-								option={enterpriseRegistrationTimeOption}
-								onChartReady = {IntervalTime}
+						enterpriseRegistrationTimeOption
+						// esdateOption
+							? (
+								<ReactEcharts
+									option={enterpriseRegistrationTimeOption}
 
-								{...{
+									// option={esdateOption}
 
-								}}
-							/>
-						) : null
+									whenCanGetInsCallback={intervalTime}
+
+									ref={(e) => { this.echarts_react = e }}
+									{...{
+
+									}}
+								/>
+							) : null
 					}
 
 				</div>
@@ -272,23 +292,15 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 								option={changeLineOption}
 								{...{
 									style: {
-										float: 'left',
-										height: '100%' ,
-										width: 600
-									}
-								}}
-								onEvents={ {
-									click: ev=>{
-										ev.stopPropagation();
-										ev.preventDefault();
+										position: 'absolute',
+										top: 52,
+										left: 0,
+										bottom: 20,
+										right: '49%',
+
 									},
-									datazoom: ev=>{
-										// ev.stopPropagation();
-										// ev.preventDefault();
-										console.log(ev);
-										console.log(88);
-									}
-								} }
+
+								}}
 							/>
 						) : null
 					}
@@ -299,25 +311,14 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 								option={changeRectOption}
 								{...{
 									style: {
-										float: 'left',
-										height: '100%' ,
-										'marginLeft': '40px',
-										width: 600
-									}
-								}}
-								// onEvents={}
-								onEvents={ {
-									click: ev=>{
-										ev.stopPropagation();
-										ev.preventDefault();
+										position: 'absolute',
+										top: 52,
+										left: '51%',
+										right: 0,
+										bottom: 20
 									},
-									datazoom: ev=>{
-										// ev.stopPropagation();
-										// ev.preventDefault();
-										// console.log(ev);
-										console.log(88);
-									}
-								} }
+								}}
+
 							/>
 						) : null
 
@@ -329,7 +330,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 					key={'radarMap'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix">
+					<div className="cont-head clearfix 42">
 						<span></span>
 						<h2>指标概要</h2>
 
@@ -339,19 +340,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 						radarMapOption ? (
 							<ReactEcharts
 								option={radarMapOption}
-								// onEvents={}
-								onEvents={ {
-									click: ev=>{
-										ev.stopPropagation();
-										ev.preventDefault();
-									},
-									datazoom: ev=>{
-										// ev.stopPropagation();
-										// ev.preventDefault();
-										// console.log(ev);
-										console.log(88);
-									}
-								} }
+
 							/>
 						) : null
 
@@ -363,11 +352,11 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 				<div
 					key={'density'}
 					className="gridBlock"
-					style={{paddingBottom: 50}}
+					// style={{paddingBottom: 50}}
 				>
 					<div className="cont-head clearfix">
 						<span></span>
-						<h2>地区统计</h2>
+						<h2>变更趋势</h2>
 						<ul className="cont-head-nav clearfix">
 							<li
 								className={` ${onOffMonitorDensity ? 'active' : ' '} `}
@@ -393,6 +382,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 								loadingOption={{
 
 								}}
+								{...{}}
 							/>
 						) : null
 
@@ -416,6 +406,7 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 						industryOption ? (
 							<ReactHighcharts
 								config={ industryOption }
+								{...{}}
 							/>
 						) : null
 
@@ -423,10 +414,6 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 
 
 				</div>
-
-
-
-
 
 				{/* 按行业分类企业数量 */}
 				<div
@@ -440,9 +427,12 @@ console.log(totaInUKEnterprises,totalIndividualsInBattalion,'mmmmmm');
 					</div>
 
 					{
-						enterpriseQquantityOption ? (
-							<ReactEcharts
-								option={enterpriseQquantityOption}
+						enterpriseQquantityOption
+						// industryphyOption
+							? (
+								<ReactEcharts
+									// option={industryphyOption}
+									option={enterpriseQquantityOption}
 								{...{
 
 								}}

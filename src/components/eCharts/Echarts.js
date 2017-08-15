@@ -12,14 +12,22 @@ export default class Echarts extends Component{
         return this.refs.ins.getEchartsInstance();
     }
 
+	componentDidMount(){
+		let {whenCanGetInsCallback} = this.props;
+		whenCanGetInsCallback && whenCanGetInsCallback(this.getEchartsInstance());
+	}
+
     render(){
         let props = this.props;
         return (
             <ReactEcharts
                 {...{
                     style: {
-                        height: '100%' ,
-                        width: '100%'
+						position: 'absolute',
+						top: '52px',
+						left: 0,
+						bottom: '20px',
+						right: 0
                     }
                 }}
                 {...props}

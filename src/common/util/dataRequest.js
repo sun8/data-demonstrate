@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-console.log(window.location.search.substring(5));
+// console.log(window.location.search.substring(5));
 const req = axios.create({
 	baseURL: 'http://fl.bidata.com.cn:8088/',
 	headers: {
