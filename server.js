@@ -14,7 +14,7 @@ config.entry.unshift('webpack-hot-middleware/client?reload=true');
 let args = process.argv;
 
 if( args[args.length-1] === 'open' ){
-    config.plugins.push(new OpenBrowser( { url : `http://localhost:${port}` } ) );
+    config.plugins.push(new OpenBrowser( { url : `http://localhost:${port}?uid=8EZUN4JJ` } ) );
 }
 
 let compiler = webpack(config);

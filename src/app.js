@@ -322,6 +322,8 @@ export default class App extends Component{
 
 	componentDidMount(){
 
+		let arr = localStorage.getItem('key') ? JSON.parse(localStorage.getItem('key')) : [];
+
 		this.getLatestChangeStat();
 		this.getHistoryChangeStat();
 		this.getRadarMap();

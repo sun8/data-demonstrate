@@ -36,19 +36,19 @@ export default class ReactGridLayout extends Component{
 		// 按行业分类企业数量 enterpriseQquantity
 		let layout = [
 
-			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: true},
-			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: true},
+			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: false},
+			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: false},
 
-			{i: 'enterpriseCapitalRegistration', x: 0, y: 1.5, w: 6, h: 2,static: true},
-			{i: 'enterpriseRegistrationTime', x: 6, y: 1.5, w: 6, h: 2,static: true},
+			{i: 'enterpriseCapitalRegistration', x: 0, y: 1.5, w: 6, h: 2,static: false},
+			{i: 'enterpriseRegistrationTime', x: 6, y: 1.5, w: 6, h: 2,static: false},
 
 
-			{i: 'radarMap', x: 0, y: 3.5, w: 6, h: 2,static: true},
-			{i: 'density', x: 6, y: 3.5, w: 6, h: 2,static: true},
+			{i: 'radarMap', x: 0, y: 3.5, w: 6, h: 2,static: false},
+			{i: 'density', x: 6, y: 3.5, w: 6, h: 2,static: false},
 
-			{i: 'industry', x: 0, y: 5.5, w: 12, h: 1,static: true},
-			{i: 'changeTrend', x: 0, y: 6.5, w: 12, h: 1.5, static: true},
-			{i: 'enterpriseQquantity', x: 0, y: 8, w: 12, h: 1.2, static: true}
+			{i: 'industry', x: 0, y: 5.5, w: 12, h: 1,static: false},
+			{i: 'changeTrend', x: 0, y: 6.5, w: 12, h: 1.5, static: false},
+			{i: 'enterpriseQquantity', x: 0, y: 8, w: 12, h: 1.2, static: false}
 
 		];
 
