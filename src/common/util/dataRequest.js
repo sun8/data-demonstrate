@@ -22,13 +22,22 @@ const reqByCross = axios.create({
 function request(url, cb, keyName) {
 
 
-	if(localStorage.getItem(keyName) || shouldRequest() ){
-		return cb( JSON.parse(localStorage.getItem(keyName) ));
+	if(localStorage.getItem(keyName) && shouldRequest() ){
+		console.log(JSON.parse(localStorage.getItem(keyName)),'get');
+		return cb && cb( JSON.parse(localStorage.getItem(keyName)) );
 	}else{
 		req.get( url )
 			.then(rut=>{
+				// if(rut.data){
+				// 	localStorage.setItem(keyName, JSON.stringify(rut.data));
+				// 	cb && cb(rut.data);
+				// }else{
+				// 	localStorage.setItem(keyName, JSON.stringify(rut.statResult));
+				// 	cb && cb(rut.statResult);
+				// }
 				localStorage.setItem(keyName, JSON.stringify(rut.data));
 				cb && cb(rut.data);
+
 			})
 			.catch(err=>{
 				console.log(err);
@@ -42,13 +51,23 @@ function request(url, cb, keyName) {
 // data传数据， config配置，(create)属性名一样会覆盖
 function requestPost(url, cb,  keyName, data={}, config={}) {
 
-	if(localStorage.getItem(keyName) || shouldRequest() ){
-		return cb( JSON.parse(localStorage.getItem(keyName) ));
+	if(localStorage.getItem(keyName) && shouldRequest() ){
+		console.log(JSON.parse(localStorage.getItem(keyName)),'post');
+		return cb && cb( JSON.parse(localStorage.getItem(keyName)) );
 	}else{
 		reqByCross.post( url, data, config )
 			.then(rut=>{
+				// if(rut.data){
+				// 	localStorage.setItem(keyName, JSON.stringify(rut.data));
+				// 	cb && cb(rut.data);
+				// }else{
+				// 	localStorage.setItem(keyName, JSON.stringify(rut));
+				// 	cb && cb(rut);
+				// }
+
 				localStorage.setItem(keyName, JSON.stringify(rut.data));
 				cb && cb(rut.data);
+
 			})
 			.catch(err=>{
 				console.log(err);

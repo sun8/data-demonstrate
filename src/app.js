@@ -105,11 +105,14 @@ export default class App extends Component{
 	getLatestChangeStat(){
 		// 获取最新状态
 		getLatestChangeStat( ({success, statResult})=>{
+			console.log(statResult,success);
 			if(!success) return;
 
 
 			let latestChangeOption = buildLatestChangeOption(statResult);
+
 			let {chartOptions} = this.state;
+			console.log(chartOptions,this.state.chartOptions);
 			this.setState({
 				chartOptions: {
 					...chartOptions,
@@ -126,6 +129,7 @@ export default class App extends Component{
 	getHistoryChangeStat(){
 		// 变更趋势图表数据请求
 		getHistoryChangeStat(({success, statResult})=>{
+			console.log(statResult,success);
 			if(!success) return;
 
 
@@ -146,7 +150,7 @@ export default class App extends Component{
 	getRadarMap(){
 		// 请求雷达图数据
 		getRadarMap( ( {data, success} )=>{
-
+console.log(data,success);
 			if(!success) return;
 
 			let radarMapOption =  buildChangeRadar(data);
@@ -171,6 +175,7 @@ export default class App extends Component{
 	// 请求监控密度,
 	getMonitorDensity(){
 		getMonitorDensity( ({success, statResult,proviceCount})=>{
+			console.log(statResult,success,proviceCount);
 				if(!success) return;
 				let densityOption = buildMonitorDensityOption(statResult);
 				let {chartOptions} = this.state;
@@ -211,6 +216,7 @@ export default class App extends Component{
 	// 请求风险密度,
 	getRiskDensity(){
 		getRiskDensity( ({success, statResult,proviceCount})=>{
+
 				if(!success) return;
 				let densityOption = buildRiskDensityOption(statResult);
 				let {chartOptions} = this.state;
@@ -231,6 +237,7 @@ export default class App extends Component{
 	getIndustryData(){
 		// 行业数据
 		getIndustryData( ({success, statResult})=>{
+			console.log(success, statResult);
 			if(!success) return;
 
 			let industryOption = buildIndustryOption(statResult);
@@ -248,6 +255,7 @@ export default class App extends Component{
 	getEnterpriseCapitalRegistration(){
 		//企业注册资本
 		getEnterpriseCapitalRegistration((data)=>{
+			console.log(data);
 			let enterpriseCapitalRegistrationOption = buildEnterpriseCapitalRegistrationOption(data);
 			let {chartOptions} = this.state;
 
@@ -263,6 +271,7 @@ export default class App extends Component{
 	getEnterpriseQquantity(){
 		//企业数量
 		getEnterpriseQquantity((data)=>{
+			console.log(data);
 			let enterpriseQquantityOption = buildEnterpriseQquantityOption(data);
 			let {chartOptions} = this.state;
 
@@ -278,6 +287,7 @@ export default class App extends Component{
 	getEnterpriseRegistrationTime(){
 		//企业注册时间查询总量
 		getEnterpriseRegistrationTime((data)=>{
+			console.log(data);
 			let enterpriseRegistrationTimeOption = buildEnterpriseRegistrationTimeOption(data);
 			let {chartOptions} = this.state;
 
@@ -293,6 +303,7 @@ export default class App extends Component{
 	getTotaInUKEnterprises(){
 		//在营企业总数
 		getTotaInUKEnterprises((data)=>{
+			console.log(data);
 			let totaInUKEnterprises = buildTotaInUKEnterprisesOption(data);
 			let {chartOptions} = this.state;
 
@@ -322,7 +333,6 @@ export default class App extends Component{
 
 	componentDidMount(){
 
-		let arr = localStorage.getItem('key') ? JSON.parse(localStorage.getItem('key')) : [];
 
 		this.getLatestChangeStat();
 		this.getHistoryChangeStat();
