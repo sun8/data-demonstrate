@@ -36,25 +36,27 @@ export default class ReactGridLayout extends Component{
 		// 按行业分类企业数量 enterpriseQquantity
 		let layout = [
 
-			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 1.5,static: false},
-			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 1.5, static: false},
+			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 400/50, minH:400/50,  static: false},
+			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 400/50, minH:400/50, static: false},
 
-			{i: 'enterpriseCapitalRegistration', x: 0, y: 1.5, w: 6, h: 2,static: false},
-			{i: 'enterpriseRegistrationTime', x: 6, y: 1.5, w: 6, h: 2,static: false},
+			{i: 'enterpriseCapitalRegistration', x: 0, y: 400/50, w: 6, h: 400/50,static: false},
+			{i: 'enterpriseRegistrationTime', x: 6, y: 400/50, w: 6, h: 400/50,static: false},
 
 
-			{i: 'radarMap', x: 0, y: 3.5, w: 6, h: 2,static: false},
-			{i: 'density', x: 6, y: 3.5, w: 6, h: 2,static: false},
+			{i: 'radarMap', x: 0, y: 400/50*2, w: 6, h: 400/50,static: false},
+			{i: 'density', x: 6, y: 400/50*2, w: 6, h: 400/50,static: false},
 
-			{i: 'industry', x: 0, y: 5.5, w: 12, h: 1,static: false},
-			{i: 'changeTrend', x: 0, y: 6.5, w: 12, h: 1.5, static: false},
-			{i: 'enterpriseQquantity', x: 0, y: 8, w: 12, h: 1.2, static: false}
+			{i: 'industry', x: 0, y: 400/50*3, w: 12, h: 400/50, minW: 12,static: false},
+			{i: 'changeTrend', x: 0, y: 400/50*3, w: 12, h: 400/50, minW: 12, static: false},
+			{i: 'enterpriseQquantity', x: 0, y: 400/50*4, w: 12, h: 400/50, static: false}
 
 		];
 
+		if(!this.getUIState()) this.setUIState({lg: layout});
+
 		this.state = {
 			layout: layout,
-			layouts: {lg: layout}
+			layouts: this.getUIState()
 		};
 
 		this.onLayoutChange = this.onLayoutChange.bind(this);
@@ -62,9 +64,17 @@ export default class ReactGridLayout extends Component{
 
     }
 
+	getUIState(){
+		return JSON.parse(localStorage.getItem('uiState'));
+	}
+	setUIState(layouts){
+		localStorage.setItem('uiState', JSON.stringify(layouts));
+	}
+
 
 	onLayoutChange(layout, layouts){
 		// console.log(layout);
+		this.setUIState(layouts);
 		this.setState({ layout, layouts });
 	}
 
@@ -143,9 +153,9 @@ export default class ReactGridLayout extends Component{
 				layout={layout}
 				layouts={layouts}
 				breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-				cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
+				cols={{lg: 12, md: 12, sm: 12, xs: 6, xxs: 6}}
 				// autoSize={true}
-				rowHeight={500}
+				rowHeight={50}
 				width={1200}
 
 				// onBreakpointChange={layout=>console.log(layout)}
@@ -388,7 +398,15 @@ export default class ReactGridLayout extends Component{
 						industryOption ? (
 							<ReactHighcharts
 								config={ industryOption }
-								{...{}}
+								domProps={{
+									style: {
+										position: 'absolute',
+										left: 0,
+										right: 0,
+										top: 52,
+										bottom: 10
+									}
+								}}
 							/>
 						) : null
 

@@ -1,5 +1,5 @@
 
-// 最近的更新状态
+// 最近的更新状态，整体概览
 
 export function buildLatestChangeOption(data) {
 
@@ -862,7 +862,7 @@ export const buildEnterpriseOption = (month,enterprise,seniorExecutive) =>{
 		return option
 }
 
-//企业资本统计
+//企业注册资本统计
 export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
 
 
@@ -875,9 +875,10 @@ export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
 	        trigger: "item",
 	        formatter: "{a} <br/>{b} : {c} ({d}%)"
 	    },
-	    legend: {
-	        x: "left",
-	        data: []
+		legend: {
+	        orient: 'vertical',
+	        x: 'left',
+	        data:[...data]
 	    },
 	    label: {
 	        normal: {
@@ -916,6 +917,7 @@ export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
 	    series: [{
 	        name: "企业数量",
 	        type: "pie",
+			center: ['53%', '50%'],
 	        roseType: "area",
 	        label: {
 	            normal: {
@@ -991,27 +993,40 @@ export const buildEnterpriseRegistrationTimeOption = (data) =>{
 	        trigger: 'item',
 	        formatter: "{a} <br/>{b} : {c} ({d}%)"
 	    },
+		legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:[...data]
+    	},
 	    series : [
 	        {
 	            name:'查询总量',
 	            type:'pie',
 	            selectedMode: 'single',
 	            radius : '55%',
-	            center: ['50%', '60%'],
+	            center: ['50%', '50%'],
 	            data:[...data],
-	            itemStyle: {
-	                normal: {
-	                    color: '#61a0a8',
-	                    borderWidth: 0.5,
-	                    borderColor: '#ffffff'
-	                },
+
+				itemStyle: {
 	                emphasis: {
-	                    color: '#c23531',
 	                    shadowBlur: 10,
 	                    shadowOffsetX: 0,
 	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
 	                }
 	            }
+	            // itemStyle: {
+	            //     normal: {
+	            //         color: '#61a0a8',
+	            //         borderWidth: 0.5,
+	            //         borderColor: '#ffffff'
+	            //     },
+	            //     emphasis: {
+	            //         color: '#c23531',
+	            //         shadowBlur: 10,
+	            //         shadowOffsetX: 0,
+	            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+	            //     }
+	            // }
 	        }
 	    ]
 	}
