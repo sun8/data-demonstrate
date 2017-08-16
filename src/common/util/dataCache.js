@@ -1,10 +1,13 @@
 
-export default function shouldRequest(){
+export default function shouldRequest(keyName){
 
-    let timerOneDay = localStorage.getItem('time')?localStorage.getItem('time'):new Date().getTime();
+    if(!localStorage.getItem(keyName+'overtime')) localStorage.setItem(keyName+'overtime', new Date().getTime());
 
-    let timeDifference = new Date().getTime() - timerOneDay;
+    let timeDifference = new Date().getTime() - Number(localStorage.getItem(keyName+'overtime'));
 
-    return timeDifference < 24*60*60*1000 ;
+
+
+
+    return !localStorage.getItem(keyName) || timeDifference > 24*60*60*1000;
 
 }

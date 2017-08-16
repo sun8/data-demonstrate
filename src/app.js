@@ -112,7 +112,8 @@ export default class App extends Component{
 			let latestChangeOption = buildLatestChangeOption(statResult);
 
 			let {chartOptions} = this.state;
-			console.log(chartOptions,this.state.chartOptions);
+			console.log(this.state.chartOptions);
+			console.log(latestChangeOption);
 			this.setState({
 				chartOptions: {
 					...chartOptions,
@@ -121,6 +122,7 @@ export default class App extends Component{
 
 			});
 
+			console.log(this.state.chartOptions);
 
 
 		} );

@@ -305,10 +305,10 @@ export default class ReactGridLayout extends Component{
 
 							/>
 						) : null
-
 					}
 
 				</div>
+
 				{/* 指标概要, 雷达图 */}
 				<div
 					key={'radarMap'}
@@ -330,8 +330,8 @@ export default class ReactGridLayout extends Component{
 
 					}
 
-
 				</div>
+
 				{/* 密度地图 */}
 				<div
 					key={'density'}
@@ -355,7 +355,6 @@ export default class ReactGridLayout extends Component{
 								onClick={getRiskDensity}
 							>风险密度</li>
 						</ul>
-
 					</div>
 
 
@@ -371,7 +370,6 @@ export default class ReactGridLayout extends Component{
 						) : null
 
 					}
-
 
 				</div>
 
@@ -396,7 +394,6 @@ export default class ReactGridLayout extends Component{
 
 					}
 
-
 				</div>
 
 				{/* 按行业分类企业数量 */}
@@ -417,20 +414,14 @@ export default class ReactGridLayout extends Component{
 								<ReactEcharts
 									// option={industryphyOption}
 									option={enterpriseQquantityOption}
-								{...{
+									{...{
 
-								}}
-							/>
-						) : null
+									}}
+								/>
+							) : null
 					}
 
 				</div>
-
-
-
-
-
-
 
 
 			</ResponsiveReactGridLayout>
