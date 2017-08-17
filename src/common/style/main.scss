@@ -7,6 +7,7 @@
     color: rgba(255,255,255,0.75);
     background-color: #24292e;
     margin-bottom: 6px;
+
 }
 .head{
     padding-right: 16px !important;
@@ -40,6 +41,7 @@
     height: 42px;
     border-bottom: 1px solid #ccc;
     position: relative;
+	cursor: move;
 	// margin-bottom: 20px;
     span{
         width: 6px;

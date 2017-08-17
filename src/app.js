@@ -82,6 +82,9 @@ export default class App extends Component{
 				onOffRiskDensity: false
 			}
 		}
+
+		this.EnterpriseRegistrationTimerNum = 0 ;
+
 		this.getLatestChangeStat = this.getLatestChangeStat.bind(this);
 		this.getHistoryChangeStat = this.getHistoryChangeStat.bind(this);
 
@@ -105,15 +108,12 @@ export default class App extends Component{
 	getLatestChangeStat(){
 		// 获取最新状态
 		getLatestChangeStat( ({success, statResult})=>{
-			console.log(statResult,success);
 			if(!success) return;
 
 
 			let latestChangeOption = buildLatestChangeOption(statResult);
 
 			let {chartOptions} = this.state;
-			console.log(this.state.chartOptions);
-			console.log(latestChangeOption);
 			this.setState({
 				chartOptions: {
 					...chartOptions,
@@ -122,16 +122,12 @@ export default class App extends Component{
 
 			});
 
-			console.log(this.state.chartOptions);
-
-
 		} );
 	}
 
 	getHistoryChangeStat(){
 		// 变更趋势图表数据请求
 		getHistoryChangeStat(({success, statResult})=>{
-			console.log(statResult,success);
 			if(!success) return;
 
 
@@ -152,13 +148,9 @@ export default class App extends Component{
 	getRadarMap(){
 		// 请求雷达图数据
 		getRadarMap( ( {data, success} )=>{
-console.log(data,success);
 			if(!success) return;
 
 			let radarMapOption =  buildChangeRadar(data);
-
-			// console.log(statResult);
-
 			let {chartOptions} = this.state;
 
 			this.setState({
@@ -177,7 +169,6 @@ console.log(data,success);
 	// 请求监控密度,
 	getMonitorDensity(){
 		getMonitorDensity( ({success, statResult,proviceCount})=>{
-			console.log(statResult,success,proviceCount);
 				if(!success) return;
 				let densityOption = buildMonitorDensityOption(statResult);
 				let {chartOptions} = this.state;
@@ -239,7 +230,6 @@ console.log(data,success);
 	getIndustryData(){
 		// 行业数据
 		getIndustryData( ({success, statResult})=>{
-			console.log(success, statResult);
 			if(!success) return;
 
 			let industryOption = buildIndustryOption(statResult);
@@ -257,7 +247,6 @@ console.log(data,success);
 	getEnterpriseCapitalRegistration(){
 		//企业注册资本
 		getEnterpriseCapitalRegistration((data)=>{
-			console.log(data);
 			let enterpriseCapitalRegistrationOption = buildEnterpriseCapitalRegistrationOption(data);
 			let {chartOptions} = this.state;
 
@@ -273,7 +262,6 @@ console.log(data,success);
 	getEnterpriseQquantity(){
 		//企业数量
 		getEnterpriseQquantity((data)=>{
-			console.log(data);
 			let enterpriseQquantityOption = buildEnterpriseQquantityOption(data);
 			let {chartOptions} = this.state;
 
@@ -289,7 +277,8 @@ console.log(data,success);
 	getEnterpriseRegistrationTime(){
 		//企业注册时间查询总量
 		getEnterpriseRegistrationTime((data)=>{
-			console.log(data);
+			this.EnterpriseRegistrationTimerNum = data.length;
+
 			let enterpriseRegistrationTimeOption = buildEnterpriseRegistrationTimeOption(data);
 			let {chartOptions} = this.state;
 
@@ -305,7 +294,6 @@ console.log(data,success);
 	getTotaInUKEnterprises(){
 		//在营企业总数
 		getTotaInUKEnterprises((data)=>{
-			console.log(data);
 			let totaInUKEnterprises = buildTotaInUKEnterprisesOption(data);
 			let {chartOptions} = this.state;
 
@@ -359,7 +347,7 @@ console.log(data,success);
     render(){
 
 	let { chartOptions , onOff } = this.state ;
-	let {getMonitorDensity,getChangeDensity,getRiskDensity} = this;
+	let {getMonitorDensity,getChangeDensity,getRiskDensity,EnterpriseRegistrationTimerNum} = this;
     	return (
 			<div>
                 {/* <header className="head-warp">
@@ -381,7 +369,8 @@ console.log(data,success);
 							{
 								getMonitorDensity,
 								getChangeDensity,
-								getRiskDensity
+								getRiskDensity,
+								EnterpriseRegistrationTimerNum
 							}
 						}
 						onOff = {

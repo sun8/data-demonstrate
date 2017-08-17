@@ -4,7 +4,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const ReactHighcharts = require('react-highcharts');
 // 引入地图数据
 import 'common/data/china';
-
+import ReactLoading from 'react-loading';
 
 // 引入echarts组件
 import ReactEcharts from 'eCharts/Echarts';
@@ -157,7 +157,7 @@ export default class ReactGridLayout extends Component{
 				// autoSize={true}
 				rowHeight={50}
 				width={1200}
-
+				draggableCancel={`.echarts-react`}
 				// onBreakpointChange={layout=>console.log(layout)}
 				onLayoutChange={onLayoutChange}
 			>
@@ -172,22 +172,21 @@ export default class ReactGridLayout extends Component{
 						<h2>整体概览</h2>
 
 					</div>
-					{
-						latestChangeOption ? (
-							<ReactEcharts
-								option={latestChangeOption}
-								{...{
-									style: {
-										position: 'absolute',
-										top: 52,
-										left: 0,
-										right: 0,
-										bottom: -30
-									},
-								}}
-							/>
-						) : null
-					}
+					<div className="echarts-react">
+						<ReactEcharts
+							option={latestChangeOption}
+							{...{
+								style: {
+									position: 'absolute',
+									top: 52,
+									left: 0,
+									right: 0,
+									bottom: -30
+								}
+							}}
+						/>
+					</div>
+
 				</div>
 
 				{/* 在营企业or个体总数 */}
@@ -220,19 +219,15 @@ export default class ReactGridLayout extends Component{
 						<h2>企业注册资本</h2>
 
 					</div>
-					{
-						enterpriseCapitalRegistrationOption
-						// regcapOption
-							? (
-								<ReactEcharts
-									option={enterpriseCapitalRegistrationOption}
-									// option={regcapOption}
-									{...{
+					<div className="echarts-react">
+						<ReactEcharts
+							option={enterpriseCapitalRegistrationOption}
+							// option={regcapOption}
+							{...{
 
-									}}
-								/>
-							) : null
-					}
+							}}
+						/>
+					</div>
 
 				</div>
 
@@ -247,25 +242,21 @@ export default class ReactGridLayout extends Component{
 						<h2>按企业注册时间查询总量</h2>
 
 					</div>
+					<div className="echarts_react">
+						<ReactEcharts
+							option={enterpriseRegistrationTimeOption}
 
-					{
-						enterpriseRegistrationTimeOption
-						// esdateOption
-							? (
-								<ReactEcharts
-									option={enterpriseRegistrationTimeOption}
+							// option={esdateOption}
 
-									// option={esdateOption}
+							whenCanGetInsCallback={intervalTime}
 
-									whenCanGetInsCallback={intervalTime}
+							ref={(e) => { this.echarts_react = e }}
+							{...{
 
-									ref={(e) => { this.echarts_react = e }}
-									{...{
+							}}
+						/>
+					</div>
 
-									}}
-								/>
-							) : null
-					}
 
 				</div>
 
@@ -280,42 +271,35 @@ export default class ReactGridLayout extends Component{
 
 					</div>
 
-					{
-						changeLineOption ? (
-							<ReactEcharts
-								option={changeLineOption}
-								{...{
-									style: {
-										position: 'absolute',
-										top: 52,
-										left: 0,
-										bottom: 20,
-										right: '49%',
+					<div className="echarts-react">
+						<ReactEcharts
+							option={changeLineOption}
+							{...{
+								style: {
+									position: 'absolute',
+									top: 52,
+									left: 0,
+									bottom: 20,
+									right: '49%',
 
-									},
+								},
 
-								}}
-							/>
-						) : null
-					}
+							}}
+						/>
+						<ReactEcharts
+							option={changeRectOption}
+							{...{
+								style: {
+									position: 'absolute',
+									top: 52,
+									left: '51%',
+									right: 0,
+									bottom: 20
+								},
+							}}
 
-					{
-						changeRectOption ? (
-							<ReactEcharts
-								option={changeRectOption}
-								{...{
-									style: {
-										position: 'absolute',
-										top: 52,
-										left: '51%',
-										right: 0,
-										bottom: 20
-									},
-								}}
-
-							/>
-						) : null
-					}
+						/>
+					</div>
 
 				</div>
 
@@ -330,15 +314,12 @@ export default class ReactGridLayout extends Component{
 
 					</div>
 
-					{
-						radarMapOption ? (
-							<ReactEcharts
-								option={radarMapOption}
+					<div className="echarts-react">
+						<ReactEcharts
+							option={radarMapOption}
 
-							/>
-						) : null
-
-					}
+						/>
+					</div>
 
 				</div>
 
@@ -367,19 +348,16 @@ export default class ReactGridLayout extends Component{
 						</ul>
 					</div>
 
+					<div className="echarts-react">
+						<ReactEcharts
+							option={densityOption}
+							loadingOption={{
 
-					{
-						densityOption ? (
-							<ReactEcharts
-								option={densityOption}
-								loadingOption={{
+							}}
+							{...{}}
+						/>
+					</div>
 
-								}}
-								{...{}}
-							/>
-						) : null
-
-					}
 
 				</div>
 
@@ -394,23 +372,26 @@ export default class ReactGridLayout extends Component{
 
 					</div>
 
-					{
-						industryOption ? (
-							<ReactHighcharts
-								config={ industryOption }
-								domProps={{
-									style: {
-										position: 'absolute',
-										left: 0,
-										right: 0,
-										top: 52,
-										bottom: 10
-									}
-								}}
-							/>
-						) : null
+					<div className="echarts-react">
 
-					}
+						{
+							industryOption?
+								(<ReactHighcharts
+									config={ industryOption }
+									domProps={{
+										style: {
+											position: 'absolute',
+											left: 0,
+											right: 0,
+											top: 52,
+											bottom: 10
+										}
+									}}
+								 />) : null
+
+						}
+					</div>
+
 
 				</div>
 
@@ -424,20 +405,16 @@ export default class ReactGridLayout extends Component{
 						<h2>按行业分类企业数量TOP10</h2>
 
 					</div>
+					<div className="echarts-react">
+						<ReactEcharts
+							// option={industryphyOption}
+							option={enterpriseQquantityOption}
+							{...{
 
-					{
-						enterpriseQquantityOption
-						// industryphyOption
-							? (
-								<ReactEcharts
-									// option={industryphyOption}
-									option={enterpriseQquantityOption}
-									{...{
-
-									}}
-								/>
-							) : null
-					}
+							}}
+						/>
+					</div>
+					
 
 				</div>
 
