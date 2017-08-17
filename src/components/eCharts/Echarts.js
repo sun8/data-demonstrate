@@ -21,6 +21,12 @@ export default class Echarts extends Component{
 
 	}
 
+    componentWillReceiveProps(){
+        let {whenCanGetInsCallback, option} = this.props;
+        if(!option) return;
+        whenCanGetInsCallback && whenCanGetInsCallback(this.getEchartsInstance());
+    }
+
 	componentDidMount(){
 		let {whenCanGetInsCallback, option} = this.props;
 		if(!option) return;
@@ -43,6 +49,7 @@ export default class Echarts extends Component{
                     },
 					showLoading: this.state.showLoading,
 					onChartReady: this.onChartReady,
+                    // whenCanGetInsCallback: this.props.whenCanGetInsCallback,
 					onEvents: {
 						onmouseover: ev=>{
 							console.log(ev);

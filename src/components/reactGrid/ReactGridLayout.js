@@ -2,9 +2,10 @@ import {Responsive, WidthProvider} from 'react-grid-layout';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const ReactHighcharts = require('react-highcharts');
+import ReactLoading from 'react-loading';
 // 引入地图数据
 import 'common/data/china';
-import ReactLoading from 'react-loading';
+// import ReactLoading from 'react-loading';
 
 // 引入echarts组件
 import ReactEcharts from 'eCharts/Echarts';
@@ -34,30 +35,50 @@ export default class ReactGridLayout extends Component{
 		// 行业统计总览 industry
 		// 变更趋势 折线图 changeTrend
 		// 按行业分类企业数量 enterpriseQquantity
-		let layout = [
+		let layout12 = [
 
-			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 400/50, minH:400/50,  static: false},
-			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 400/50, minH:400/50, static: false},
+			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 400/50,  static: false},
+			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 400/50,  static: false},
 
 			{i: 'enterpriseCapitalRegistration', x: 0, y: 400/50, w: 6, h: 400/50,static: false},
 			{i: 'enterpriseRegistrationTime', x: 6, y: 400/50, w: 6, h: 400/50,static: false},
 
 
-			{i: 'radarMap', x: 0, y: 400/50*2, w: 6, h: 400/50,static: false},
-			{i: 'density', x: 6, y: 400/50*2, w: 6, h: 400/50,static: false},
+			{i: 'radarMap', x: 0, y: 400/50*2, w: 6, h: 400/50, static: false},
+			{i: 'density', x: 6, y: 400/50*2, w: 6, h: 400/50, static: false},
 
-			{i: 'industry', x: 0, y: 400/50*3, w: 12, h: 400/50, minW: 12,static: false},
-			{i: 'changeTrend', x: 0, y: 400/50*3, w: 12, h: 400/50, minW: 12, static: false},
+			{i: 'industry', x: 0, y: 400/50*3, w: 12, h: 400/50, static: false},
+			{i: 'changeTrend', x: 0, y: 400/50*3, w: 12, h: 400/50,  static: false},
 			{i: 'enterpriseQquantity', x: 0, y: 400/50*4, w: 12, h: 400/50, static: false}
 
 		];
+		let layout6 = [
 
-		if(!this.getUIState()) this.setUIState({lg: layout});
+			{i: 'totalInBattalion', x: 0, y: 0, w: 6, h: 400/50,  static: false},
+			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 400/50,  static: false},
+
+			{i: 'enterpriseCapitalRegistration', x: 0, y: 400/50, w: 6, h: 400/50,static: false},
+			{i: 'enterpriseRegistrationTime', x: 6, y: 400/50, w: 6, h: 400/50,static: false},
+
+
+			{i: 'radarMap', x: 0, y: 400/50*2, w: 6, h: 400/50, static: false},
+			{i: 'density', x: 6, y: 400/50*2, w: 6, h: 400/50, static: false},
+
+			{i: 'industry', x: 0, y: 400/50*3, w: 6, h: 400/50, static: false},
+			{i: 'changeTrend', x: 0, y: 400/50*3, w: 6, h: 400/50,  static: false},
+			{i: 'enterpriseQquantity', x: 0, y: 400/50*4, w: 6, h: 400/50, static: false}
+
+		];
+
+
+		if(!this.getUIState()) this.setUIState({lg: layout12, md: layout12, sm: layout12, xs: layout6, xxs: layout6});
 
 		this.state = {
-			layout: layout,
+			// layout: layout12,
 			layouts: this.getUIState()
 		};
+
+		this.timer = null;
 
 		this.onLayoutChange = this.onLayoutChange.bind(this);
 		this.intervalTime = this.intervalTime.bind(this);
@@ -71,7 +92,7 @@ export default class ReactGridLayout extends Component{
 		localStorage.setItem('uiState', JSON.stringify(layouts));
 	}
 
-
+	//布局数据变化后的回调函数，将变化后的数据本地存储，并更新视图
 	onLayoutChange(layout, layouts){
 		// console.log(layout);
 		this.setUIState(layouts);
@@ -83,11 +104,19 @@ export default class ReactGridLayout extends Component{
 	}
 	//饼图定时器
 	intervalTime(echarts_instance){
-		// let echarts_instance = this.echarts_react.getEchartsInstance();
 
-		var count = 0;
-	    var app = {};
-	    app.timeTicket = setInterval(function () {
+
+		let {EnterpriseRegistrationTimerNum} = this.props.callback;
+
+		if(!EnterpriseRegistrationTimerNum) return;
+
+		// if(!EnterpriseRegistrationTimerNum) EnterpriseRegistrationTimerNum=0;
+
+		let count = 0;
+	    let app = {};
+
+		clearInterval(this.timer)
+	    this.timer = app.timeTicket = setInterval(function () {
 	      echarts_instance.dispatchAction({
 	        type: 'downplay',
 	        seriesIndex: 0
@@ -95,7 +124,7 @@ export default class ReactGridLayout extends Component{
 	      echarts_instance.dispatchAction({
 	        type: 'highlight',
 	        seriesIndex: 0,
-	        dataIndex: (count++) % 10
+	        dataIndex: (count++) % EnterpriseRegistrationTimerNum
 	      });
 	    }, 1000);
 	}
@@ -132,7 +161,6 @@ export default class ReactGridLayout extends Component{
 
 		} = this.props.chartOptions;
 
-
 		let {
 			getMonitorDensity,
 			getChangeDensity,
@@ -150,7 +178,7 @@ export default class ReactGridLayout extends Component{
         return (
 			<ResponsiveReactGridLayout
 				className="layout"
-				layout={layout}
+				// layout={layout}
 				layouts={layouts}
 				breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
 				cols={{lg: 12, md: 12, sm: 12, xs: 6, xxs: 6}}
@@ -167,10 +195,12 @@ export default class ReactGridLayout extends Component{
 					key={'latestChangeStat'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix">
+					<div className="cont-head">
 						<span></span>
-						<h2>整体概览</h2>
-
+						<div className="cont">
+							<span></span>
+							<h2>整体概览</h2>
+						</div>
 					</div>
 					<div className="echarts-react">
 						<ReactEcharts
@@ -214,11 +244,14 @@ export default class ReactGridLayout extends Component{
 					key={'enterpriseCapitalRegistration'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix">
+					<div className="cont-head">
 						<span></span>
-						<h2>企业注册资本</h2>
-
+						<div className="cont">
+							<span></span>
+							<h2>企业注册资本</h2>
+						</div>
 					</div>
+
 					<div className="echarts-react">
 						<ReactEcharts
 							option={enterpriseCapitalRegistrationOption}
@@ -237,10 +270,13 @@ export default class ReactGridLayout extends Component{
 					className="gridBlock"
 
 				>
-					<div className="cont-head clearfix">
-						<span></span>
-						<h2>按企业注册时间查询总量</h2>
 
+					<div className="cont-head">
+						<span></span>
+						<div className="cont">
+							<span></span>
+							<h2>按企业注册时间查询总量</h2>
+						</div>
 					</div>
 					<div className="echarts_react">
 						<ReactEcharts
@@ -265,12 +301,13 @@ export default class ReactGridLayout extends Component{
 					key={'changeTrend'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix">
+					<div className="cont-head">
 						<span></span>
-						<h2>变更趋势</h2>
-
+						<div className="cont">
+							<span></span>
+							<h2>变更趋势</h2>
+						</div>
 					</div>
-
 					<div className="echarts-react">
 						<ReactEcharts
 							option={changeLineOption}
@@ -308,10 +345,12 @@ export default class ReactGridLayout extends Component{
 					key={'radarMap'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix 42">
+					<div className="cont-head">
 						<span></span>
-						<h2>指标概要</h2>
-
+						<div className="cont">
+							<span></span>
+							<h2>指标概要</h2>
+						</div>
 					</div>
 
 					<div className="echarts-react">
@@ -331,21 +370,25 @@ export default class ReactGridLayout extends Component{
 				>
 					<div className="cont-head clearfix">
 						<span></span>
-						<h2>变更趋势</h2>
-						<ul className="cont-head-nav clearfix">
-							<li
-								className={` ${onOffMonitorDensity ? 'active' : ' '} `}
-								onClick={getMonitorDensity}
-							>监控密度</li>
-							<li
-								className={` ${onOffChangeDensity ? 'active' : ' '} `}
-								onClick = {getChangeDensity}
-							>变更密度</li>
-							<li
-								className={` ${onOffRiskDensity ? 'active' : ' '} `}
-								onClick={getRiskDensity}
-							>风险密度</li>
-						</ul>
+						<div className="cont">
+							<span></span>
+							<h2>变更趋势</h2>
+							<ul className="cont-head-nav clearfix">
+								<li
+									className={` ${onOffMonitorDensity ? 'active' : ' '} `}
+									onClick={getMonitorDensity}
+								>监控密度</li>
+								<li
+									className={` ${onOffChangeDensity ? 'active' : ' '} `}
+									onClick = {getChangeDensity}
+								>变更密度</li>
+								<li
+									className={` ${onOffRiskDensity ? 'active' : ' '} `}
+									onClick={getRiskDensity}
+								>风险密度</li>
+							</ul>
+						</div>
+
 					</div>
 
 					<div className="echarts-react">
@@ -366,12 +409,13 @@ export default class ReactGridLayout extends Component{
 					key={'industry'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix">
+					<div className="cont-head">
 						<span></span>
-						<h2>行业统计总览</h2>
-
+						<div className="cont">
+							<span></span>
+							<h2>行业统计总览</h2>
+						</div>
 					</div>
-
 					<div className="echarts-react">
 
 						{
@@ -387,7 +431,25 @@ export default class ReactGridLayout extends Component{
 											bottom: 10
 										}
 									}}
-								 />) : null
+								 />) :
+								 (<ReactLoading
+									 type={'cubes'}
+									 color={'#14A480'}
+									 height="100"
+									 width="100"
+									 style={{
+										 width: '50px',
+										 height: '50px',
+
+										 position: 'absolute',
+										 top: 0,
+										 bottom: 0,
+										 left: 0,
+										 right: 0,
+										 fill: '#14A480',
+										 margin: 'auto',
+									 }}
+								  />)
 
 						}
 					</div>
@@ -400,10 +462,13 @@ export default class ReactGridLayout extends Component{
 					key={'enterpriseQquantity'}
 					className="gridBlock"
 				>
-					<div className="cont-head clearfix">
-						<span></span>
-						<h2>按行业分类企业数量TOP10</h2>
 
+					<div className="cont-head">
+						<span></span>
+						<div className="cont">
+							<span></span>
+							<h2>按行业分类企业数量TOP10</h2>
+						</div>
 					</div>
 					<div className="echarts-react">
 						<ReactEcharts
@@ -414,7 +479,7 @@ export default class ReactGridLayout extends Component{
 							}}
 						/>
 					</div>
-					
+
 
 				</div>
 

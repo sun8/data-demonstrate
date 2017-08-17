@@ -42,11 +42,25 @@
     border-bottom: 1px solid #ccc;
     position: relative;
 	cursor: move;
+
 	// margin-bottom: 20px;
+
+}
+.cont-head>span{
+    display: block;
+    width: 100%;
+    height: 42px;
+    background-color: #f5f5f5;
+    // opacity: .5;
+}
+.cont{
+    position: absolute;
+    left: 0;
+    top: 0;
     span{
         width: 6px;
         height: 22px;
-        background-color: #333;
+        background-color: #32c5d2;
         position: absolute;
         left: 20px;
         top: 10px;
@@ -56,8 +70,12 @@
         float: left;
         font:bold 22px/42px "微软雅黑";
         text-indent: 32px;
+        color: #32c5d2;
     }
 }
+
+
+
 .cont-head-nav{
     float: left;
     padding-top: 12px;
@@ -67,14 +85,14 @@
         height: 30px;
         padding: 0 14px;
         font:bold 16px/30px "微软雅黑";
-        color: #3a3536;
+        color: #32c5d2;
     }
 }
 
 //点击高亮
 .cont-head-nav .active{
-    border-bottom: 2px solid #e15671;
-    color: #e15671;
+    border-bottom: 2px solid #f26b6b;
+    color: #f26b6b;
 }
 // end 密度的头部
 

@@ -917,7 +917,7 @@ export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
 	    series: [{
 	        name: "企业数量",
 	        type: "pie",
-			center: ['53%', '50%'],
+			center: ['59%', '50%'],
 	        roseType: "area",
 	        label: {
 	            normal: {
