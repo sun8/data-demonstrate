@@ -22,13 +22,18 @@ export function buildLatestChangeOption(data) {
 	return {
 		angleAxis: {
 		    },
+
 		    radiusAxis: {
 		        type: 'category',
 		        data: ['监控数量', '本期新增', '本期变更', '本期风险'].reverse(),
 		        z: 10
 		    },
 		    polar: {
+					center: ['58%', '45%'],
+					radius : '60%',
 		    },
+				center: ['58%', '45%'],
+				radius : '60%',
 		    series: [{
 		        type: 'bar',
 		        data: [monitor, 0,0,0].reverse(),
@@ -53,9 +58,15 @@ export function buildLatestChangeOption(data) {
 		        coordinateSystem: 'polar',
 		        name: riskN,
 		        stack: 'a'
-		    }],
+		    }
+
+			],
+
+
 		    legend: {
 		        show: true,
+						orient: 'vertical',
+						x: 'left',
 		        data: [monitorN, newMonitorN, changeN, riskN]
 		    }
 	}
@@ -1005,8 +1016,8 @@ export const buildEnterpriseQquantityOption = (data) =>{
 		    },
 		    grid: {
 		        left: '0',
-		        right: '4%',
-		        bottom: '3%',
+		        right: '5%',
+		        bottom: '5%',
 		        containLabel: true
 		    },
 		    xAxis: {

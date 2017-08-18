@@ -28,6 +28,8 @@ function request(url, cb, keyName) {
 
 		req.get( url )
 			.then(rut=>{
+				console.log(rut);
+				if(!rut.data.success) return;
 				localStorage.setItem(keyName, JSON.stringify(rut.data));
 				cb && cb(rut.data);
 
@@ -52,6 +54,7 @@ function requestPost(url, cb,  keyName, data={}, config={}) {
 
 		reqByCross.post( url, data, config )
 			.then(rut=>{
+				console.log(rut);
 				localStorage.setItem(keyName, JSON.stringify(rut.data));
 				cb && cb(rut.data);
 
