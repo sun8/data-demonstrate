@@ -32,28 +32,28 @@ let dfConfig = {
     module: {
         rules: [
             {
-                test: /\.(png|jpg|jpeg|gif)$/,
-                use: ['url-loader?limit=8192'],
-            },
-            {
-                test: /\.(mp4|ogg|svg)$/,
-                use: ['file-loader']
-            },
-            {
-                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-                use: ['url-loader?limit=10000&mimetype=application/font-woff']
-            },
-            {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                use: ['url-loader?limit=10000&mimetype=application/octet-stream']
-            },
-            {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                use: ['file-loader']
-            },
-            {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                use: ['url-loader?limit=10000&mimetype=image/svg+xml']
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'img/[name].[hash:7].[ext]'
+                }
+              },
+              {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'media/[name].[hash:7].[ext]'
+                }
+              },
+              {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'fonts/[name].[hash:7].[ext]'
+                }
             },
             {
                 test: /\.txt$/,

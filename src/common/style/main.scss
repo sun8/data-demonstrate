@@ -1,32 +1,32 @@
 
-
-.head-warp{
-    width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    color: rgba(255,255,255,0.75);
-    background-color: #24292e;
-    margin-bottom: 6px;
-
-}
-.head{
-    padding-right: 16px !important;
-    padding-left: 16px !important;
-    margin-right: auto;
-    margin-left: auto;
-    .timeWidget{
-        float: left;
-        width:300px;
-        line-height: 42px;
-        margin-left: 30px;
-
-    }
-    h1{
-        float: left;
-        line-height: 42px;
-        margin-left: 30px;
-    }
-}
+//时间控件的标题样式
+// .head-warp{
+//     width: 100%;
+//     padding-top: 4px;
+//     padding-bottom: 4px;
+//     color: rgba(255,255,255,0.75);
+//     background-color: #24292e;
+//     margin-bottom: 6px;
+//
+// }
+// .head{
+//     padding-right: 16px !important;
+//     padding-left: 16px !important;
+//     margin-right: auto;
+//     margin-left: auto;
+//     .timeWidget{
+//         float: left;
+//         width:300px;
+//         line-height: 42px;
+//         margin-left: 30px;
+//
+//     }
+//     h1{
+//         float: left;
+//         line-height: 42px;
+//         margin-left: 30px;
+//     }
+// }
 
 // 给一个react-grid-layout 的 block
 .gridBlock{
@@ -86,6 +86,7 @@
         padding: 0 14px;
         font:bold 16px/30px "微软雅黑";
         color: #32c5d2;
+        curosr: pointer;
     }
 }
 
@@ -98,25 +99,107 @@
 
 
 //在营企业总数，在营个体总数
-.totaInUKEnterprises{
-    width: 80%;
-    height: 40%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3%;
-    border-radius: 10px;
-    background-color: #3598dc;
-    p{
-        font:700 24px "微软雅黑";
-        line-height: 50px;
-        text-align: right;
-        margin-right: 8%;
+// .totaInUKEnterprises{
+//     width: 80%;
+//     height: 40%;
+//     margin-left: auto;
+//     margin-right: auto;
+//     margin-top: 3%;
+//     border-radius: 10px;
+//     background-color: #3598dc;
+//     p{
+//         font:700 24px "微软雅黑";
+//         line-height: 50px;
+//         text-align: right;
+//         margin-right: 8%;
+//         color: #fff;
+//     }
+//     .num{
+//         padding-top: 6%;
+//     }
+// }
+// .clo{
+//     background-color: #32c5d2;
+// }
+
+
+//header start
+.row{
+    // margin-left: -15px;
+    // margin-right: -15px;
+    margin: 0;
+    // width: 100%;
+    //
+    padding:10px 10px 0 10px;
+}
+.col-md-3{
+    box-sizing: border-box;
+    float: left;
+    width: 25%;
+    padding: 0 0;
+    padding-right: 10px;
+    position: relative;
+    min-height: 1px;
+}
+.padding0{
+    padding-right: 0;
+}
+.widget-thumb{
+    border: 1px solid #e7ecf1;
+    padding: 20px;
+    background: #fff;
+    h4{
+        font-size: 18px;
+        font-weight: 700;
+        color: #8e9daa;
+        margin: 0 0 20px;
+        font-family: "Open Sans",sans-serif;
+        line-height: 1.1;
+        text-transform: uppercase;
+    }
+}
+.widget-thumb-wrap{
+    overflow: hidden;
+    i{
+        float: left;
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        font-size: 20px;
+        line-height: 41px;
         color: #fff;
+        text-align: center;
+        padding: 10px;
+        margin-right: 15px;
     }
-    .num{
-        padding-top: 6%;
+    .bg-green{
+        background: #32c5d2!important;
+    }
+    .bg-red {
+        background: #e7505a!important;
+    }
+    .bg-purple {
+        background: #8E44AD!important;
+    }
+    .bg-blue{
+        background: #3598dc!important;
     }
 }
-.clo{
-    background-color: #32c5d2;
+.widget-thumb-body{
+    overflow: hidden;
+    .widget-thumb-subtitle{
+        padding-top: 2px;
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #8e9daa;
+    }
+    .widget-thumb-body-stat{
+        display: block;
+        font-size: 30px;
+        font-weight: 600;
+        color: #3e4f5e;
+    }
 }
+
+//header end

@@ -47,8 +47,8 @@ export default class ReactGridLayout extends Component{
 			{i: 'radarMap', x: 0, y: 400/50*2, w: 6, h: 400/50, static: false},
 			{i: 'density', x: 6, y: 400/50*2, w: 6, h: 400/50, static: false},
 
-			{i: 'industry', x: 0, y: 400/50*3, w: 12, h: 400/50, static: false},
-			{i: 'changeTrend', x: 0, y: 400/50*3, w: 12, h: 400/50,  static: false},
+			// {i: 'industry', x: 0, y: 400/50*3, w: 12, h: 400/50, static: false},
+			// {i: 'changeTrend', x: 0, y: 400/50*3, w: 12, h: 400/50,  static: false},
 			{i: 'enterpriseQquantity', x: 0, y: 400/50*4, w: 12, h: 400/50, static: false}
 
 		];
@@ -58,15 +58,15 @@ export default class ReactGridLayout extends Component{
 			{i: 'latestChangeStat', x: 6, y: 0, w: 6, h: 400/50,  static: false},
 
 			{i: 'enterpriseCapitalRegistration', x: 0, y: 400/50, w: 6, h: 400/50,static: false},
-			{i: 'enterpriseRegistrationTime', x: 6, y: 400/50, w: 6, h: 400/50,static: false},
+			// {i: 'enterpriseRegistrationTime', x: 6, y: 400/50, w: 6, h: 400/50,static: false},
 
 
 			{i: 'radarMap', x: 0, y: 400/50*2, w: 6, h: 400/50, static: false},
 			{i: 'density', x: 6, y: 400/50*2, w: 6, h: 400/50, static: false},
 
-			{i: 'industry', x: 0, y: 400/50*3, w: 6, h: 400/50, static: false},
-			{i: 'changeTrend', x: 0, y: 400/50*3, w: 6, h: 400/50,  static: false},
-			{i: 'enterpriseQquantity', x: 0, y: 400/50*4, w: 6, h: 400/50, static: false}
+			// {i: 'industry', x: 0, y: 400/50*3, w: 6, h: 400/50, static: false},
+			// {i: 'changeTrend', x: 0, y: 400/50*3, w: 6, h: 400/50,  static: false},
+			// {i: 'enterpriseQquantity', x: 0, y: 400/50*4, w: 6, h: 400/50, static: false}
 
 		];
 
@@ -220,10 +220,10 @@ export default class ReactGridLayout extends Component{
 				</div>
 
 				{/* 在营企业or个体总数 */}
-				<div
+				{/* <div
 					key={'totalInBattalion'}
 					className="gridBlock"
-				>
+					>
 
 					<div className="totaInUKEnterprises">
 						<p className="num">{totaInUKEnterprises}</p>
@@ -236,7 +236,7 @@ export default class ReactGridLayout extends Component{
 
 					</div>
 
-				</div>
+				</div> */}
 
 
 				{/* 企业注册资本 */}
@@ -256,6 +256,9 @@ export default class ReactGridLayout extends Component{
 						<ReactEcharts
 							option={enterpriseCapitalRegistrationOption}
 							// option={regcapOption}
+							whenCanGetInsCallback={intervalTime}
+
+							ref={(e) => { this.echarts_react = e }}
 							{...{
 
 							}}
@@ -284,9 +287,7 @@ export default class ReactGridLayout extends Component{
 
 							// option={esdateOption}
 
-							whenCanGetInsCallback={intervalTime}
 
-							ref={(e) => { this.echarts_react = e }}
 							{...{
 
 							}}
@@ -297,48 +298,48 @@ export default class ReactGridLayout extends Component{
 				</div>
 
 				{/* 变更趋势 折线图 */}
-				<div
+				{/* <div
 					key={'changeTrend'}
 					className="gridBlock"
-				>
+					>
 					<div className="cont-head">
 						<span></span>
 						<div className="cont">
-							<span></span>
-							<h2>变更趋势</h2>
+					<span></span>
+					<h2>变更趋势</h2>
 						</div>
 					</div>
 					<div className="echarts-react">
 						<ReactEcharts
-							option={changeLineOption}
-							{...{
-								style: {
-									position: 'absolute',
-									top: 52,
-									left: 0,
-									bottom: 20,
-									right: '49%',
+					option={changeLineOption}
+					{...{
+					style: {
+					position: 'absolute',
+					top: 52,
+					left: 0,
+					bottom: 20,
+					right: '49%',
 
-								},
+					},
 
-							}}
+					}}
 						/>
 						<ReactEcharts
-							option={changeRectOption}
-							{...{
-								style: {
-									position: 'absolute',
-									top: 52,
-									left: '51%',
-									right: 0,
-									bottom: 20
-								},
-							}}
+					option={changeRectOption}
+					{...{
+					style: {
+					position: 'absolute',
+					top: 52,
+					left: '51%',
+					right: 0,
+					bottom: 20
+					},
+					}}
 
 						/>
 					</div>
 
-				</div>
+				</div> */}
 
 				{/* 指标概要, 雷达图 */}
 				<div
@@ -405,61 +406,61 @@ export default class ReactGridLayout extends Component{
 				</div>
 
 				{/* 行业统计总览 */}
-				<div
+				{/* <div
 					key={'industry'}
 					className="gridBlock"
-				>
+					>
 					<div className="cont-head">
 						<span></span>
 						<div className="cont">
-							<span></span>
-							<h2>行业统计总览</h2>
+					<span></span>
+					<h2>行业统计总览</h2>
 						</div>
 					</div>
 					<div className="echarts-react">
 
 						{
-							industryOption?
-								(<ReactHighcharts
-									config={ industryOption }
-									domProps={{
-										style: {
-											position: 'absolute',
-											left: 0,
-											right: 0,
-											top: 52,
-											bottom: 10
-										}
-									}}
-								 />) :
-								 (<ReactLoading
-									 type={'cubes'}
-									 color={'#14A480'}
-									 height="100"
-									 width="100"
-									 style={{
-										 width: '50px',
-										 height: '50px',
+					industryOption?
+					(<ReactHighcharts
+					config={ industryOption }
+					domProps={{
+					style: {
+					position: 'absolute',
+					left: 0,
+					right: 0,
+					top: 52,
+					bottom: 10
+					}
+					}}
+					/>) :
+					(<ReactLoading
+					type={'cubes'}
+					color={'#14A480'}
+					height="100"
+					width="100"
+					style={{
+					width: '50px',
+					height: '50px',
 
-										 position: 'absolute',
-										 top: 0,
-										 bottom: 0,
-										 left: 0,
-										 right: 0,
-										 fill: '#14A480',
-										 margin: 'auto',
-									 }}
-								  />)
+					position: 'absolute',
+					top: 0,
+					bottom: 0,
+					left: 0,
+					right: 0,
+					fill: '#14A480',
+					margin: 'auto',
+					}}
+					/>)
 
 						}
 					</div>
 
 
-				</div>
+				</div>*/}
 
 				{/* 按行业分类企业数量 */}
 				<div
-					key={'enterpriseQquantity'}
+					key={'totalInBattalion'}
 					className="gridBlock"
 				>
 

@@ -864,80 +864,126 @@ export const buildEnterpriseOption = (month,enterprise,seniorExecutive) =>{
 
 //企业注册资本统计
 export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
-
-
-	let option ={
-	    title: {
-	        text: "",
-	        x: "center"
-	    },
-	    tooltip: {
-	        trigger: "item",
-	        formatter: "{a} <br/>{b} : {c} ({d}%)"
-	    },
+	let option = {
+		title : {
+			text: '',
+			x:'center'
+		},
+		tooltip : {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : {c} ({d}%)"
+		},
 		legend: {
-	        orient: 'vertical',
-	        x: 'left',
-	        data:[...data]
-	    },
-	    label: {
-	        normal: {
-	            formatter: "{b} ({d}%)",
-	            position: "insideTopRight"
-	        }
-	    },
-	    labelLine: {
-	        normal: {
-	            smooth: .6
-	        }
-	    },
-	    toolbox: {
-	        show: !0,
-	        feature: {
-	            mark: {
-	                show: !0
-	            },
-	            dataView: {
-	                show: !0,
-	                readOnly: !1
-	            },
-	            magicType: {
-	                show: !0,
-	                type: ["pie", "funnel"]
-	            },
-	            restore: {
-	                show: !0
-	            },
-	            saveAsImage: {
-	                show: !0
-	            }
-	        }
-	    },
-	    calculable: !0,
-	    series: [{
-	        name: "企业数量",
-	        type: "pie",
-			center: ['59%', '50%'],
-	        roseType: "area",
-	        label: {
-	            normal: {
-	                show: !0
-	            },
-	            emphasis: {
-	                show: !0
-	            }
-	        },
-	        lableLine: {
-	            normal: {
-	                show: !0
-	            },
-	            emphasis: {
-	                show: !0
-	            }
-	        },
-	        data:  [...data]
-	    }]
+		orient: 'vertical',
+		x: 'left',
+		data:[...data]
+		},
+		series : [
+			{
+				name:'查询总量',
+				type:'pie',
+				selectedMode: 'single',
+				radius : '55%',
+				center: ['58%', '50%'],
+				data:[...data],
+
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+				// itemStyle: {
+				//     normal: {
+				//         color: '#61a0a8',
+				//         borderWidth: 0.5,
+				//         borderColor: '#ffffff'
+				//     },
+				//     emphasis: {
+				//         color: '#c23531',
+				//         shadowBlur: 10,
+				//         shadowOffsetX: 0,
+				//         shadowColor: 'rgba(0, 0, 0, 0.5)'
+				//     }
+				// }
+			}
+		]
 	}
+
+
+	// let option ={
+	//     title: {
+	//         text: "",
+	//         x: "center"
+	//     },
+	//     tooltip: {
+	//         trigger: "item",
+	//         formatter: "{a} <br/>{b} : {c} ({d}%)"
+	//     },
+	// 	legend: {
+	//         orient: 'vertical',
+	//         x: 'left',
+	//         data:[...data]
+	//     },
+	//     label: {
+	//         normal: {
+	//             formatter: "{b} ({d}%)",
+	//             position: "insideTopRight"
+	//         }
+	//     },
+	//     labelLine: {
+	//         normal: {
+	//             smooth: .6
+	//         }
+	//     },
+	//     toolbox: {
+	//         show: !0,
+	//         feature: {
+	//             mark: {
+	//                 show: !0
+	//             },
+	//             dataView: {
+	//                 show: !0,
+	//                 readOnly: !1
+	//             },
+	//             magicType: {
+	//                 show: !0,
+	//                 type: ["pie", "funnel"]
+	//             },
+	//             restore: {
+	//                 show: !0
+	//             },
+	//             saveAsImage: {
+	//                 show: !0
+	//             }
+	//         }
+	//     },
+	//     calculable: !0,
+	//     series: [{
+	//         name: "企业数量",
+	//         type: "pie",
+	// 		center: ['59%', '50%'],
+	//         roseType: "area",
+	//         label: {
+	//             normal: {
+	//                 show: !0
+	//             },
+	//             emphasis: {
+	//                 show: !0
+	//             }
+	//         },
+	//         lableLine: {
+	//             normal: {
+	//                 show: !0
+	//             },
+	//             emphasis: {
+	//                 show: !0
+	//             }
+	//         },
+	//         data:  [...data]
+	//     }]
+	// }
 
 	return option
 }
@@ -958,7 +1004,7 @@ export const buildEnterpriseQquantityOption = (data) =>{
 		        }
 		    },
 		    grid: {
-		        left: '3%',
+		        left: '0',
 		        right: '4%',
 		        bottom: '3%',
 		        containLabel: true
@@ -983,53 +1029,108 @@ export const buildEnterpriseQquantityOption = (data) =>{
 
 //企业注册时间查询总量
 export const buildEnterpriseRegistrationTimeOption = (data) =>{
-
+// console.log(data);
+	// let option = {
+	// 	title : {
+	//         text: '',
+	//         x:'center'
+	//     },
+	//     tooltip : {
+	//         trigger: 'item',
+	//         formatter: "{a} <br/>{b} : {c} ({d}%)"
+	//     },
+	// 	legend: {
+    //     orient: 'vertical',
+    //     x: 'left',
+    //     data:[...data]
+    // 	},
+	//     series : [
+	//         {
+	//             name:'查询总量',
+	//             type:'pie',
+	//             selectedMode: 'single',
+	//             radius : '55%',
+	//             center: ['50%', '50%'],
+	//             data:[...data],
+	//
+	// 			itemStyle: {
+	//                 emphasis: {
+	//                     shadowBlur: 10,
+	//                     shadowOffsetX: 0,
+	//                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+	//                 }
+	//             }
+	//             // itemStyle: {
+	//             //     normal: {
+	//             //         color: '#61a0a8',
+	//             //         borderWidth: 0.5,
+	//             //         borderColor: '#ffffff'
+	//             //     },
+	//             //     emphasis: {
+	//             //         color: '#c23531',
+	//             //         shadowBlur: 10,
+	//             //         shadowOffsetX: 0,
+	//             //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+	//             //     }
+	//             // }
+	//         }
+	//     ]
+	// }
+	let {count,year} = data;
 	let option = {
-		title : {
-	        text: '',
-	        x:'center'
-	    },
-	    tooltip : {
-	        trigger: 'item',
-	        formatter: "{a} <br/>{b} : {c} ({d}%)"
-	    },
-		legend: {
-        orient: 'vertical',
-        x: 'left',
-        data:[...data]
-    	},
-	    series : [
-	        {
-	            name:'查询总量',
-	            type:'pie',
-	            selectedMode: 'single',
-	            radius : '55%',
-	            center: ['50%', '50%'],
-	            data:[...data],
+    title: {
+        text: '',
+        subtext: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    // legend: {
+    //     data:['最高气温','最低气温']
+    // },
+    toolbox: {
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            dataView: {readOnly: false},
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: [...year]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name:'最高数量',
+            type:'line',
+            data:[...count],
+            // markPoint: {
+            //     data: [
+            //         {type: 'max', name: '最大值'},
+            //         {type: 'min', name: '最小值'}
+            //     ]
+            // },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        }
 
-				itemStyle: {
-	                emphasis: {
-	                    shadowBlur: 10,
-	                    shadowOffsetX: 0,
-	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-	                }
-	            }
-	            // itemStyle: {
-	            //     normal: {
-	            //         color: '#61a0a8',
-	            //         borderWidth: 0.5,
-	            //         borderColor: '#ffffff'
-	            //     },
-	            //     emphasis: {
-	            //         color: '#c23531',
-	            //         shadowBlur: 10,
-	            //         shadowOffsetX: 0,
-	            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
-	            //     }
-	            // }
-	        }
-	    ]
-	}
+    ]
+};
 	return option
 }
 

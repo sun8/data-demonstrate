@@ -12,6 +12,7 @@ const req = axios.create({
 
 const reqByCross = axios.create({
 	baseURL: 'http://192.168.11.171:8808/',
+	// baseURL: 'http://10.20.20.60:8080/',
 	headers: {
 		// 'uid': window.location.search.substring(5)
 		// 'Content-Type' : 'application/x-www-form-urlencoded'
@@ -96,14 +97,14 @@ export function getEnterpriseRegistrationTime(cb) {
 
 //在营企业总数
 export function getTotaInUKEnterprises(cb) {
-	requestPost('/getNumOfEnt', cb ,'getNumOfEnt');
+	requestPost('/getNum', cb ,'getNum');
 
 }
 
 
 //在营个体总数
 export function getTotalIndividualsInBattalion(cb) {
-	requestPost('/getNumOfInd', cb,'getNumOfInd');
+	// requestPost('/getNumOfInd', cb,'getNumOfInd');
 
 }
 
@@ -117,7 +118,7 @@ export function getLatestChangeStat(cb) {
 
 // 变更趋势
 export function getHistoryChangeStat(cb) {
-	request('/front/stats/historyChangeStat', cb,'historyChangeStat');
+	// request('/front/stats/historyChangeStat', cb,'historyChangeStat');
 
 }
 // 雷达图请求
@@ -143,6 +144,6 @@ export function getRiskDensity(cb) {
 }
 // 行业
 export function getIndustryData(cb) {
-	request('/front/stats/industryphy', cb,'industryphy');
+	// request('/front/stats/industryphy', cb,'industryphy');
 
 }

@@ -5,11 +5,16 @@ import ReactGridLayout from 'reactGrid/ReactGridLayout';
 import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'node_modules/react-bootstrap-daterangepicker/css/daterangepicker.css';
 
+import 'node_modules/simple-line-icons/css/simple-line-icons.css';
+
 import 'style/main.scss';
 import 'style/reset.scss';
 
 import "node_modules/react-grid-layout/css/styles.css";
 import "node_modules/react-resizable/css/styles.css";
+
+//引入头部列表
+import Header from 'components/header/Header';
 
 
 // 引入请求函数
@@ -247,6 +252,7 @@ export default class App extends Component{
 	getEnterpriseCapitalRegistration(){
 		//企业注册资本
 		getEnterpriseCapitalRegistration((data)=>{
+			this.EnterpriseRegistrationTimerNum = data.length;
 			let enterpriseCapitalRegistrationOption = buildEnterpriseCapitalRegistrationOption(data);
 			let {chartOptions} = this.state;
 
@@ -277,7 +283,7 @@ export default class App extends Component{
 	getEnterpriseRegistrationTime(){
 		//企业注册时间查询总量
 		getEnterpriseRegistrationTime((data)=>{
-			this.EnterpriseRegistrationTimerNum = data.length;
+
 
 			let enterpriseRegistrationTimeOption = buildEnterpriseRegistrationTimeOption(data);
 			let {chartOptions} = this.state;
@@ -296,7 +302,6 @@ export default class App extends Component{
 		getTotaInUKEnterprises((data)=>{
 			let totaInUKEnterprises = buildTotaInUKEnterprisesOption(data);
 			let {chartOptions} = this.state;
-
 			this.setState({
 				chartOptions: {
 					...chartOptions,
@@ -360,6 +365,12 @@ export default class App extends Component{
                     </div>
 
                 </header> */}
+
+
+				<Header
+					chartOptions={chartOptions}
+				/>
+
 
                 <section>
                     {/* 图表布局 */}
