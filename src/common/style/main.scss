@@ -151,7 +151,9 @@
     border: 1px solid #e7ecf1;
     padding: 20px;
     background: #fff;
+		overflow: hidden;
     h4{
+				height: 18px;
         font-size: 16px;
         font-weight: 600;
         color: #8e9daa;
@@ -159,6 +161,7 @@
         font-family: "Open Sans",sans-serif;
         line-height: 1.1;
         text-transform: uppercase;
+				overflow: hidden;
     }
 }
 .widget-thumb-wrap{

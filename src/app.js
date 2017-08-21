@@ -251,9 +251,10 @@ export default class App extends Component{
 
 	getEnterpriseCapitalRegistration(){
 		//企业注册资本
-		getEnterpriseCapitalRegistration((data)=>{
-			this.EnterpriseRegistrationTimerNum = data.length;
-			let enterpriseCapitalRegistrationOption = buildEnterpriseCapitalRegistrationOption(data);
+		getEnterpriseCapitalRegistration(({code,result})=>{
+			if(code!==200) return;
+			this.EnterpriseRegistrationTimerNum = result.pie.length;
+			let enterpriseCapitalRegistrationOption = buildEnterpriseCapitalRegistrationOption(result.pie);
 			let {chartOptions} = this.state;
 
 			this.setState({
@@ -267,8 +268,9 @@ export default class App extends Component{
 
 	getEnterpriseQquantity(){
 		//企业数量
-		getEnterpriseQquantity((data)=>{
-			let enterpriseQquantityOption = buildEnterpriseQquantityOption(data);
+		getEnterpriseQquantity(({code,result})=>{
+			if(code!==200) return;
+			let enterpriseQquantityOption = buildEnterpriseQquantityOption(result);
 			let {chartOptions} = this.state;
 
 			this.setState({
@@ -282,10 +284,10 @@ export default class App extends Component{
 
 	getEnterpriseRegistrationTime(){
 		//企业注册时间查询总量
-		getEnterpriseRegistrationTime((data)=>{
+		getEnterpriseRegistrationTime(({code,result})=>{
 
-
-			let enterpriseRegistrationTimeOption = buildEnterpriseRegistrationTimeOption(data);
+			if(code!==200) return;
+			let enterpriseRegistrationTimeOption = buildEnterpriseRegistrationTimeOption(result);
 			let {chartOptions} = this.state;
 
 			this.setState({
@@ -299,8 +301,9 @@ export default class App extends Component{
 
 	getTotaInUKEnterprises(){
 		//在营企业总数
-		getTotaInUKEnterprises((data)=>{
-			let totaInUKEnterprises = buildTotaInUKEnterprisesOption(data);
+		getTotaInUKEnterprises(({code,result})=>{
+			if(code!==200) return;
+			let totaInUKEnterprises = buildTotaInUKEnterprisesOption(result);
 			let {chartOptions} = this.state;
 			this.setState({
 				chartOptions: {
@@ -342,7 +345,7 @@ export default class App extends Component{
 		this.getEnterpriseRegistrationTime();
 
 		this.getTotaInUKEnterprises();
-		this.getTotalIndividualsInBattalion();
+		// this.getTotalIndividualsInBattalion();
 
 	}
 

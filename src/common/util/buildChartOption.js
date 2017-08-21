@@ -29,10 +29,10 @@ export function buildLatestChangeOption(data) {
 		        z: 10
 		    },
 		    polar: {
-					center: ['58%', '45%'],
+					center: ['55%', '45%'],
 					radius : '60%',
 		    },
-				center: ['58%', '45%'],
+				center: ['55%', '45%'],
 				radius : '60%',
 		    series: [{
 		        type: 'bar',
@@ -885,10 +885,16 @@ export const buildEnterpriseCapitalRegistrationOption  = (data) =>{
 			formatter: "{a} <br/>{b} : {c} ({d}%)"
 		},
 		legend: {
-		orient: 'vertical',
-		x: 'left',
-		data:[...data]
+			orient: 'vertical',
+			x: 'left',
+			data:[...data]
 		},
+		grid: {
+			 left: '5%',
+			 right: '4%',
+			 bottom: '3%',
+			 containLabel: true
+	 	},
 		series : [
 			{
 				name:'查询总量',
@@ -1015,8 +1021,8 @@ export const buildEnterpriseQquantityOption = (data) =>{
 		        }
 		    },
 		    grid: {
-		        left: '0',
-		        right: '5%',
+		        left: '3%',
+		        right: '8%',
 		        bottom: '5%',
 		        containLabel: true
 		    },
@@ -1122,6 +1128,12 @@ export const buildEnterpriseRegistrationTimeOption = (data) =>{
             formatter: '{value}'
         }
     },
+		grid: {
+			 left: '3%',
+			 right: '12%',
+			 bottom: '3%',
+			 containLabel: true
+	 	},
     series: [
         {
             name:'最高数量',

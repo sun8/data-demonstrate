@@ -11,8 +11,8 @@ const req = axios.create({
 });
 
 const reqByCross = axios.create({
-	baseURL: 'http://192.168.11.171:8808/',
-	// baseURL: 'http://10.20.20.60:8080/',
+	// baseURL: 'http://192.168.11.171:8808/',
+	baseURL: 'http://10.20.20.60:8080/',
 	headers: {
 		// 'uid': window.location.search.substring(5)
 		// 'Content-Type' : 'application/x-www-form-urlencoded'
@@ -55,6 +55,7 @@ function requestPost(url, cb,  keyName, data={}, config={}) {
 		reqByCross.post( url, data, config )
 			.then(rut=>{
 				console.log(rut);
+				if(rut.data.code!==200) return;
 				localStorage.setItem(keyName, JSON.stringify(rut.data));
 				cb && cb(rut.data);
 
