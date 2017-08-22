@@ -243,7 +243,7 @@ const renderChangeLineOption = function (xAxisData,changeData,changeAllData) {
 
 				var timeSort = radarData.reverse().slice(0,6);
 				var eleRect = timeSort.reverse();
-
+				legendData = legendData.slice(0,6);
 				//数组排序获取最大
 				var sortNumber = function(a,b){
 					return a

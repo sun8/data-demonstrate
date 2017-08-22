@@ -5,6 +5,7 @@ import shouldRequest from 'common/util/dataCache.js';
 // console.log(window.location.search.substring(5));
 const req = axios.create({
 	baseURL: 'http://fl.bidata.com.cn:8088/',
+	timeout: 10000,
 	headers: {
 		'X-Token': window.location.search.substring(5)
 	}
@@ -12,7 +13,9 @@ const req = axios.create({
 
 const reqByCross = axios.create({
 	// baseURL: 'http://192.168.11.171:8808/',
-	baseURL: 'http://10.20.20.60:8080/',
+	// baseURL: 'http://10.20.20.60:8080/',
+	baseURL: 'https://api.bidata.com.cn/dashboard',
+	timeout: 10000,
 	headers: {
 		// 'uid': window.location.search.substring(5)
 		// 'Content-Type' : 'application/x-www-form-urlencoded'

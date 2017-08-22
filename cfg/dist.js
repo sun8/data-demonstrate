@@ -75,7 +75,8 @@ config.module.rules.push(
                 options: {
                     minimize: true
                 }
-            }]
+            }],
+            publicPath:'./'
         })
     },
     {
